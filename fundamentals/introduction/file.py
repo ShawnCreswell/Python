@@ -12,7 +12,7 @@ print(person['name']) #Log statment
 person['name'] = 'George' #variable declaration
 person['eye_color'] = 'blue' #variable declaration
 print(fruit[2]) #Log statment
-""" Boolean
+
 if num1 > 45:
     print("It's greater")
 else:
