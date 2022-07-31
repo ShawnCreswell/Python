@@ -1,73 +1,73 @@
-num1 = 42 #variable declaration
-num2 = 2.3 #variable declaration
-boolean = True #variable declaration
-string = 'Hello World'#variable declaration
-pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives'] #variable declaration
-person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False} #variable declaration
-fruit = ('blueberry', 'strawberry', 'banana') #variable declaration
+num1 = 42 #variable declaration, numbers
+num2 = 2.3 #variable declaration, numbers
+boolean = True #variable declaration, boolean
+string = 'Hello World'#variable declaration, string
+pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives'] #Dictionries
+person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False} #Tuples
+fruit = ('blueberry', 'strawberry', 'banana') #variable declaration, string
 print(type(fruit)) #Log statment, Type check
-print(pizza_toppings[1]) #Log statment
-pizza_toppings.append('Mushrooms') #Length check
-print(person['name']) #Log statment
-person['name'] = 'George' #variable declaration
-person['eye_color'] = 'blue' #variable declaration
-print(fruit[2]) #Log statment
+print(pizza_toppings[1]) #Log statment, acces value
+pizza_toppings.append('Mushrooms') #add value
+print(person['name']) #Lg statment, access value
+person['name'] = 'George' #change value
+person['eye_color'] = 'blue' #change value
+print(fruit[2]) #Log statmtent, access value
 
-if num1 > 45:
-    print("It's greater")
-else:
-    print("It's lower")
-""" """ Strings
-if len(string) < 5:
-    print("It's a short word!")
-elif len(string) > 15:
-    print("It's a long word!")
-else:
-    print("Just right!")
-""""""Numbers
-for x in range(5):
-    print(x)
-for x in range(2,5):
-    print(x)
-for x in range(2,10,3):
-    print(x)
+if num1 > 45: #if 
+    print("It's greater")#log statment
+else: #else
+    print("It's lower")#log statment
+
+if len(string) < 5: #if
+    print("It's a short word!") #log statment
+elif len(string) > 15: #else if
+    print("It's a long word!") #log statment
+else: #else
+    print("Just right!") #log statment
+
+for x in range(5): #for loop, start at 0 stop at 5
+    print(x) #log statment
+for x in range(2,5): #for loop, start at 2 stop at 5
+    print(x) #log statment
+for x in range(2,10,3):#for loop start at 2 stop at 10, increment by 3
+    print(x) #log statment
 x = 0
-while(x < 5):
-    print(x)
-    x += 1
-"""
-pizza_toppings.pop()
-pizza_toppings.pop(1)
+while(x < 5): #start at 0 stop at 5 
+    print(x) #log statment
+    x +=  #increment by 1
 
-print(person)
-person.pop('eye_color')
-print(person)
+pizza_toppings.pop() #delete value
+pizza_toppings.pop(1)#delete value
 
-for topping in pizza_toppings:
-    if topping == 'Pepperoni':
-        continue
-    print('After 1st if statement')
-    if topping == 'Olives':
-        break
+print(person)#log statment
+person.pop('eye_color')#delete value
+print(person)#log statment
 
-def print_hello_ten_times():
-    for num in range(10):
-        print('Hello')
+for topping in pizza_toppings: #for loop
+    if topping == 'Pepperoni': #boolean
+        continue #continue
+    print('After 1st if statement') #log statment
+    if topping == 'Olives':#boolean
+        break #break
 
-print_hello_ten_times()
+def print_hello_ten_times():  #function
+    for num in range(10): #parameter
+        print('Hello') #return
 
-def print_hello_x_times(x):
-    for num in range(x):
-        print('Hello')
+print_hello_ten_times() #argument
 
-print_hello_x_times(4)
+def print_hello_x_times(x): #function
+    for num in range(x):  #parameter
+        print('Hello') #return
 
-def print_hello_x_or_ten_times(x = 10):
-    for num in range(x):
-        print('Hello')
+print_hello_x_times(4) #argument
 
-print_hello_x_or_ten_times()
-print_hello_x_or_ten_times(4)
+def print_hello_x_or_ten_times(x = 10): #function
+    for num in range(x): #parameter
+        print('Hello') #return
+
+print_hello_x_or_ten_times()#argument
+print_hello_x_or_ten_times(4)#argument
 
 
 """
