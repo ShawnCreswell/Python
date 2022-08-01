@@ -20,3 +20,4 @@
 # print(first_plus_length([1,2,3,4,5]))
 
 #4.Values Greater than Second
+def values_greater_than_second(list):
