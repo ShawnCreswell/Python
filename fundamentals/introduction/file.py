@@ -1,12 +1,12 @@
-num1 = 42 #variable declaration, numbers
-num2 = 2.3 #variable declaration, numbers
+num1 = 42 #variable declaration, integer
+num2 = 2.3 #variable declaration, float
 boolean = True #variable declaration, boolean
 string = 'Hello World'#variable declaration, string
 pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives'] #Dictionries
 person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False} #Tuples
 fruit = ('blueberry', 'strawberry', 'banana') #variable declaration, string
 print(type(fruit)) #Log statment, Type check
-print(pizza_toppings[1]) #Log statment, acces value
+print(pizza_toppings[1]) #Log statment, access value
 pizza_toppings.append('Mushrooms') #add value
 print(person['name']) #Lg statment, access value
 person['name'] = 'George' #change value
