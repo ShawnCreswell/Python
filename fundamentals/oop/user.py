@@ -1,33 +1,55 @@
 class user:
     
-    def __init__(self, first_name, last_name, email, age):
+    def __init__(self, first_name, last_name, email, age, is_rewards_member = False, gold_card_points = 0):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.age = age
-        self.is_rewards_member = False
-        self.gold_card_points = 0
+        self.is_rewards_member = is_rewards_member
+        self.gold_card_points = gold_card_points
 
     def display_info(self):
-        print(user_shawn.first_name)
-        print(user_shawn.last_name)
-        print(user_shawn.email)
-        print(user_shawn.age)
+        print(self.first_name)
+        print(self.last_name)
+        print(self.email)
+        print(self.age)
+        print(self.is_rewards_member)
+        print(self.gold_card_points)
         
 
     def enroll(self):
-        self.is_reward_member = True
+        self.is_rewards_member = True
         self.gold_card_points = 200
-        # user_shawn.is_reward_member = True
-        # user_shawn.gold_card_points = 0
-        return
+        return 
     
     def spend_points(self, amount):
-        self.gold_card_points -= 10
+        self.gold_card_points = self.gold_card_points - (amount)
+        return 
 
 
-user_shawn = user("Shawn", "Creswell", "creswellshawn@gmail.com", 25)
+user_shawn = user("Shawn", "Creswell", "creswellshawn@gmail.com", 25, False, 0)
+# print(user_shawn.display_info())
+user_shawn.enroll()
+# print(user_shawn.display_info())
+
+user_marcus = user("Marcus", "Creswell", "creswellmarcus@gmail.com", 22, False, 0)
+user_sarina = user("Sarina", "Creswell", "creswellsarina@gmail.com", 28, False, 0)
+
+# print(user_marcus.display_info())
+# print(user_sarina.display_info())
+user_marcus.spend_points(50)
+# print(user_marcus.display_info())
+
+# print(user_sarina.display_info())
+user_sarina.enroll()
+# print(user_sarina.display_info())
+user_sarina.spend_points(80)
 print(user_shawn.display_info())
-print(user_shawn.enroll())
-print(user_shawn.enroll())
+print(user_marcus.display_info())
+print(user_sarina.display_info())
+
+
+
+
+
 
