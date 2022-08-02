@@ -1,8 +1,3 @@
-
-from typing_extensions import Self
-from unicodedata import name
-
-
 class user:
     
     def __init__(self, first_name, last_name, email, age):
@@ -23,12 +18,16 @@ class user:
     def enroll(self):
         self.is_reward_member = True
         self.gold_card_points = 200
+        # user_shawn.is_reward_member = True
+        # user_shawn.gold_card_points = 0
+        return
     
     def spend_points(self, amount):
         self.gold_card_points -= 10
 
 
 user_shawn = user("Shawn", "Creswell", "creswellshawn@gmail.com", 25)
-# print(display_info(self))
-print(user_shawn.first_name)
-print(display_info())
+print(user_shawn.display_info())
+print(user_shawn.enroll())
+print(user_shawn.enroll())
+
