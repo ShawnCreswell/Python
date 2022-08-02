@@ -37,9 +37,13 @@ class BankAccount:
 
     @classmethod
     def print_all_instnaces(cls):
+        for account in cls.accounts:
+            print(account.display_account_info())
 
 
 
 
 acct1 = BankAccount(.02, 100).deposit(300).withdraw(200).display_account_info()
 acct2 = BankAccount()
+acct2 = BankAccount()
+
