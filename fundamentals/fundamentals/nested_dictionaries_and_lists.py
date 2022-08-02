@@ -38,10 +38,24 @@ students = [
 
 #3 Get Values from a list of dictionaries
 
-def iterateDictionary2(key_name, students):
-    for person in students:
-        print(person[key_name])
+# def iterateDictionary2(key_name, students):
+#     for person in students:
+#         print(person[key_name])
 
+# iterateDictionary2('first_name', students)
+# iterateDictionary2('last_name', students)
 
-iterateDictionary2('first_name', students)
-iterateDictionary2('last_name', students)
+dojo = {
+   'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+   'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+
+def printInfo(dojo):
+    print(len(dojo["locations"]), "Locations")
+    for places in dojo['locations']:
+        print(places)  
+    print(len(dojo['instructors']), "Instructors")
+    for people in dojo['instructors']:
+        print(people)
+
+printInfo(dojo)
