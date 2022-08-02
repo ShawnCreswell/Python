@@ -45,6 +45,7 @@ def iterateDictionary2(key_name, students):
 iterateDictionary2('first_name', students)
 iterateDictionary2('last_name', students)
 
+#4
 dojo = {
 'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
 'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
@@ -59,3 +60,12 @@ def printInfo(dojo):
         print(people)
 
 printInfo(dojo)
+
+
+# def printInfo(some_dict):
+#     for k, v in some_dict.items():
+#         print(len(v), k.upper())
+#         print("\n".join(v))
+#         print()
+
+# printInfo(dojo)
