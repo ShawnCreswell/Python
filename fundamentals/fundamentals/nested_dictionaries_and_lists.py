@@ -30,9 +30,9 @@ students = [
     {'first_name' : 'Mark', 'last_name' : 'Guillen'},
     {'first_name' : 'KB', 'last_name' : 'Tonel'}
     ]
-def iterateDictionary(students):
-    for some_list in students:
-        print('first name -', some_list['first_name'],'last name -',some_list['last_name'])
+def iterateDictionary(some_list):
+    for student in some_list:
+        print('first name -', student['first_name'],'last name -',student['last_name'])
 
 iterateDictionary(students)
 
