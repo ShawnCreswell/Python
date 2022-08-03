@@ -11,10 +11,14 @@
 # tweetie = Bird('yellow', 'small', 'tweet')
 # raven = Bird('black', 'big and nasty', 'squawk')
 
+from wsgiref import validate
+
+
 users_list = [
     {'first': 'Tre', 'last': 'Mays', 'email': 'tdog@hotmail.com'},
     {'first': 'Lucie', 'last': 'chevreuil', 'email': 'lc@hotmail.com'},
     {'first': 'Nisrine', 'last': 'Kane', 'email': 'nk@gmail.com'},
+    {"first": '4', 'last': 42, 'email': 'hi mom'},
 ]
 
 class User:
@@ -33,7 +37,17 @@ class User:
     def register(cls, the_list):
         for user_in_list in the_list:
             cls.users.append(User(user_in_list))
-        
+
+    @staticmethod
+    def validate_user(user:dict)-> bool:
+        is_valid = True
+        if len(user['first']) < 2:
+            is_valid = False
+        return is_valid
+
+
+if not User.validate_user(users_list[-1]):
+        print("Sorry, D! you need a longer name")
     
 user1 = User(users_list[0])
 user2 = User(users_list[1])
