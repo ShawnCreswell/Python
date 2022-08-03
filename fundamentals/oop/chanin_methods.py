@@ -15,6 +15,7 @@ class user:
         print(self.age)
         print(self.is_rewards_member)
         print(self.gold_card_points)
+        print("\n")
         
         
 
@@ -29,19 +30,19 @@ class user:
 
 
 user_shawn = user("Shawn", "Creswell", "creswellshawn@gmail.com", 25, False, 0)
-# print(user_shawn.display_info())
-user_shawn.enroll()
-# print(user_shawn.display_info())
+
+user_shawn.enroll().display_info()
 
 user_marcus = user("Marcus", "Creswell", "creswellmarcus@gmail.com", 22, False, 0)
-user_sarina = user("Sarina", "Creswell", "creswellsarina@gmail.com", 28, False, 0)
-user_marcus.spend_points(50)
-user_sarina.enroll()
+user_marcus.spend_points(50).enroll().display_info()
 
-user_sarina.spend_points(80)
-print(user_shawn.display_info())
-print(user_marcus.display_info())
-print(user_sarina.display_info())
+
+user_sarina = user("Sarina", "Creswell", "creswellsarina@gmail.com", 28, False, 0)
+user_sarina.spend_points(80).display_info()
+
+# print(user_shawn.display_info())
+# print(user_marcus.display_info())
+# print(user_sarina.display_info())
 
 
 

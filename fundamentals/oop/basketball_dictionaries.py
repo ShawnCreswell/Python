@@ -41,9 +41,6 @@ class Player:
 
     new_team = []
 
-
-
-
     def __init__(self, data):
         self.name = data['name']
         self.age = data['age']
