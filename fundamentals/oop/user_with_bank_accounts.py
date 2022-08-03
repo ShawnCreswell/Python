@@ -55,8 +55,9 @@ class user:
         self.savings.deposit(amount)
         print(self.checking.balance)
 
-    def make_withdraw(self,amount):
-        self.checking.withdraw(amount)
+    def make_withdraw(self, amount):
+        self.account.withdraw(amount)
+        self.savings.withdraw(amount)
 
     def display_user_balance(self):
         print("user:", self.first_name, ",", "Checking Account: ", self.checking.balance)
