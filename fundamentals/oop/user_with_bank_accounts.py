@@ -52,6 +52,7 @@ class user:
 
     def make_deposit(self, amount):
         self.checking.deposit(amount)
+        self.savings.deposit(amount)
         print(self.checking.balance)
 
     def make_withdraw(self,amount):
