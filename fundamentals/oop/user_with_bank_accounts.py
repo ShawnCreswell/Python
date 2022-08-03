@@ -47,21 +47,20 @@ class user:
         self.age = age
         self.is_rewards_member = is_rewards_member
         self.gold_card_points = gold_card_points
-        self.account = BankAccount(0.02, 400)
+        self.checking = BankAccount(0.02, 400)
         self.savings = BankAccount(.05, 1000)
 
     def make_deposit(self, amount):
-        self.account.deposit(amount)
-        print(self.account.balance)
+        self.checking.deposit(amount)
+        print(self.checking.balance)
 
     def make_withdraw(self,amount):
-        self.account.withdraw(amount)
+        self.checking.withdraw(amount)
 
     def display_user_balance(self):
-        print("user:", self.first_name, ",", "Checking Account: ", self.account.balance)
-
-    def display_user_balance2(self):
+        print("user:", self.first_name, ",", "Checking Account: ", self.checking.balance)
         print("user:", self.first_name, ",", "Saving Account: ", self.savings.balance)
+
 
     def display_info(self):
         print(self.first_name)
@@ -84,7 +83,7 @@ class user:
 user_shawn = user("Shawn", "Creswell", "creswellshawn@gmail.com", 25, False, 0)
 
 user_shawn.display_user_balance()
-user_shawn.display_user_balance2()
+
 
 
 
