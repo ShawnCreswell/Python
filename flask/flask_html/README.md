@@ -11,3 +11,4 @@ pipenv shell
 
 ```
 - [ ] make [server.py](server.py)
+- [ ] make [index.html](templates/index.html)
