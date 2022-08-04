@@ -9,7 +9,7 @@ class Ninja:
 
 
     def walk(self):
-        self.
+        pass
 
     def feed(self):
         pass
