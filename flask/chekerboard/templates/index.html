@@ -14,10 +14,40 @@
     </div>
 
     <div class="container flexed">
-        {% for i in range(0,num) %}
-            <div class="box flexed"></div>
-            <div class="box2 flexed"></div>
-        {% endfor %}
+        <div class="top1">
+            {% for i in range(0,num) %}
+                <div>
+                    <!-- <div class="box"></div> -->
+                    <div class="box2"></div>
+                    <!-- <div class="box"></div>
+                    <div class="box2"></div> -->
+                </div>
+                {% endfor %}
+                <!-- {% for j in range(0,times) %}
+                <div>
+                    <div class="box"></div>
+                    <!-- <div class="box2"></div> -->
+                    <!-- <div class="box"></div>
+                    <div class="box2"></div> -->
+                </div>
+                {% endfor %} -->
+        </div>
+        <div class="top1">
+            {% for j in range(0,times) %}
+                <div>
+                    <div class="box"></div>
+                    <!-- <div class="box2"></div> -->
+                    <!-- <div class="box"></div>
+                    <div class="box2"></div> -->
+                </div>
+                {% endfor %}
+        </div>
+        <!-- <div class="bottom flexed">
+            {% for i in range(0,num) %}
+                <div class="box2 flexed"></div>
+                <div class="box flexed"></div>
+            {% endfor %}
+        </div> -->
     </div>
 </body>
 </html>

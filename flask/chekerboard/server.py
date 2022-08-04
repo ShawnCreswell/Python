@@ -10,8 +10,8 @@ def first():
     return render_template('index.html', title_from_backend = title)  # Return the string 'Hello World!' as a response
     
 
-@app.route('/play/<int:num>') #@app.route('/repeat/<int:num>/<name>')
-def play(num):
+@app.route('/play/<int:num>/<int:times>') #@app.route('/repeat/<int:num>/<name>')
+def play(num, times):
     title = "CheckerBoard"
     return render_template('index.html', num = num, title_from_backend = title, times=times)  # Return the string 'Hello World!' as a response
     
