@@ -16,14 +16,9 @@
 </head>
 
 <body>
-    {{users}}
-    <!-- <h1>Hello Peoples</h1> -->
 
-    <!-- {% for user in users %}
-    <p>{{user}}</p>
-    {% endfor %} -->
     <div class="container">
-        <table class="table">
+        <table class="table table-dark table-border table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -36,7 +31,7 @@
                 {% for user in users  %}
                 <tr>    
                     <th scope="row">1</th>
-                    <td>{{user['first_name']}}</td>
+                    <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>
                     <td>{{user.first_name}} {{user.last_name}}</td>
                     {% endfor %}
