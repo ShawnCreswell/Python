@@ -74,3 +74,31 @@ def swapStringFor_array_negative_vals2(arr):
             emptyArr.append(i)
     return arr
 
+def print_avg_of_array(arr):
+    sum  = 0
+    for num in arr:
+        sum += num
+    print(sum / len(arr))
+print_avg_of_array([1,2,3,4,5])
+
+def square_arr_vals(arr):
+    for i in range(len(arr)):
+        arr[i]= arr[i] * arr[i]
+    print(arr)
+square_arr_vals([1,2,3,4,5])
+
+def zero_out_arry_negatives_vals(arr):
+    for i in range (len(arr)):
+        if arr[i] < 0:
+            arr[i] = 0
+    return arr
+
+print(zero_out_arry_negatives_vals([1,-5,8,-9]))
+
+def shift_array_vals_left(arr):
+    for i in range (len(arr)-1):
+        arr[i] = arr[i+1]
+    arr[-1] = 0
+    return arr
+
+print(shift_array_vals_left([1,2,3,4,5]))
