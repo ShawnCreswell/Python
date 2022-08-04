@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            /* background-color: yellow; */
+        }
+
+        .flexed {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .top {
+            /* background-color: red; */
+            width: 750px;
+            min-height: 100px;
+            margin: 0 auto;
+        }
+        .container {
+            /* background-color: aqua; */
+            min-height: 500px;
+            width: 1000px;
+            margin: 0 auto;   
+            gap: .5rem;
+        }
+        .box {
+            /* background-color: rgb(159,197,248); */
+            background-color: var(--color);
+            height: 100px;
+            width: 100px;
+            /* flex: 1; */
+            border: 3px solid black;
+        }
+        .color {
+            background-color: var(--color);
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="top flexed">
+        <h1>{{title_from_backend}}</h1>
+    </div>
+
+    <div class="container flexed">
+        {% for i in range(num) %}
+        <div class="box flexed color" style="--color: {{ color }}"></div>
+        {% endfor %}
+    </div>
+</body>
+</html>
