@@ -4,7 +4,7 @@ app = Flask(__name__)    # Create a new instance of the Flask class called "app"
 
 @app.route('/play')          # The "@" decorator associates this route with the function immediately following
 def hello_world():
-    title = "Welcome"
+    title = "Checker Board"
     return render_template('index.html', title_from_backend = title)  # Return the string 'Hello World!' as a response
 
 
