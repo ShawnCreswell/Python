@@ -14,10 +14,15 @@ def index():
 
 @app.route('/up')
 def up():
+    session['count'] += 0
+    return redirect('/')
+
+@app.route('/add2')
+def add_two():
     session['count'] += 1
     return redirect('/')
 
-@app.route('/clear')
+@app.route('/destroy_session')
 def clear():
     session['count'] = 0
     return redirect('/')
