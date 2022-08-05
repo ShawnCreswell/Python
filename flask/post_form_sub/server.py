@@ -10,7 +10,22 @@ def index():
 
 @app.route('/form', methods=['post'])
 def handle_form():
-    print(request.form)
+    print(request.form['key'])
+    session['data'] = request.form
+    return redirect('/')
+
+@app.route('/clear')
+def clear():
+    session.clear()
+    return redirect('/')
+
+@app.route('/up')
+def up():
+    if 'count' in session:
+        session['count'] += 1
+    else:
+        session['count'] = 1
+        
     return redirect('/')
 
 
