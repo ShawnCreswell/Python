@@ -13,3 +13,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Document</title>
+    <style>
+        h1 {
+            color: blue;
+        }
+        p {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    {{session}}
+    <div class="container-sm bg-dark mt-4 p-4">
+        <label for=""></label>
+        <h1>
+            {{session.key}}
+            
+        </h1>
+        <p>
+            {{session.location}}
+        </p>
+        <p>
+            {{session.language}}
+        </p>
+        
+
+        <form action="/">
+            <input class="btn btn-primary" type="submit" name="" value="Home">
+        </form>
+        
+    </div>
+    <!-- Container end -->
+
+</body>
+
+</html>

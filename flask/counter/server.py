@@ -12,6 +12,10 @@ def index():
     session['count'] += 1
     return render_template("index.html", count= session['count'])
 
+@app.route('/results')
+def return_page():
+    return render_template("results.html")
+
 @app.route('/up')
 def up():
     session['count'] += 0
