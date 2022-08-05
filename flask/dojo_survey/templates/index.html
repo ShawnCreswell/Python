@@ -22,40 +22,44 @@
         label {
             color: white;
         }
+
+        .container {
+            width: 500px;
+        }
     </style>
 </head>
 
 <body>
     <!-- Container start -->
-    <div class="container-sm bg-dark p-4">
+    <div class="container bg-dark mt-4 p-4">
         <h1>Dojo Survey</h1>
         <form action="/" , method="post">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
-                <input type="name" name="key" class="form-control" id="exampleFormControlInput1" placeholder="">
+                <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
 
             </div>
 
             <label class="form-label" for="">Dojo location:</label>
             <select name="location" class="form-select" aria-label="Default select example">
                 <option selected>---Select A Location---</option>
-                <option value="1">Chicago</option>
-                <option value="2">Online</option>
-                <option value="3">Burbank</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Online">Online</option>
+                <option value="Burbank">Burbank</option>
             </select>
 
             <label class="form-label" for="">Favorite Language:</label>
             <select name="language" class="form-select" aria-label="Default select example">
                 <option selected>---Select A Language---</option>
-                <option value="1">Python</option>
-                <option value="2">HTML</option>
-                <option value="3">CSS</option>
-                <option value="3">javascript</option>
+                <option value="Python">Python</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="javascript">javascript</option>
             </select>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Comments:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea name="textarea" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
 
 

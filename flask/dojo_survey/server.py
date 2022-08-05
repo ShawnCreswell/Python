@@ -11,9 +11,10 @@ def hello_world():
 
 @app.route('/', methods=['post'])
 def survey():
-    session['key'] = request.form['key']
+    session['name'] = request.form['name']
     session['location'] = request.form['location']
     session['language'] = request.form['language']
+    session['textarea'] = request.form['textarea']
 
     # session['data'] = request.form
     return redirect("/results")

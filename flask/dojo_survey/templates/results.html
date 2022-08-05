@@ -14,33 +14,41 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Document</title>
     <style>
-        h1 {
+        /* h1 {
             color: blue;
-        }
+        } */
         p {
             color: white;
+        }
+
+        .container {
+            width: 500px;
         }
     </style>
 </head>
 
 <body>
-    {{session}}
-    <div class="container-sm bg-dark mt-4 p-4">
+    <div class=" container bg-dark mt-4 p-4""> 
         <label for=""></label>
-        <h1>
-            {{session.key}}
+        <h1 class="text-primary">
+            {{session.name}}
             
         </h1>
         <p>
-            {{session.location}}
+            Dojo Location: {{session.location}}
         </p>
         <p>
-            {{session.language}}
+            Preferred Language: {{session.language}}
+        </p>
+
+        <p>
+            Comments: {{session.textarea}}
         </p>
         
 
-        <form action="/">
-            <input class="btn btn-primary" type="submit" name="" value="Home">
+        <form class="border-top border-secondary text-primary" action="/">
+            <!-- <input class="btn btn-primary" type="submit" name="" value="Home"> -->
+            <a href="/">Home</a>
         </form>
         
     </div>
