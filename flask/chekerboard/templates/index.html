@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,47 +8,93 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}">
     <title>Document</title>
 </head>
-<body>
-    
+
+<body
     <div class="top flexed">
         <h1>{{title_from_backend}}</h1>
     </div>
 
+
     <div class="container flexed">
-        <div class="top1">
-            {% for i in range(0,num) %}
-                <div>
-                    <!-- <div class="box"></div> -->
-                    <div class="box2"></div>
-                    <!-- <div class="box"></div>
-                    <div class="box2"></div> -->
-                </div>
-                {% endfor %}
-                <!-- {% for j in range(0,times) %}
-                <div>
-                    <div class="box"></div>
-                    <!-- <div class="box2"></div> -->
-                    <!-- <div class="box"></div>
-                    <div class="box2"></div> -->
-                </div>
-                {% endfor %} -->
-        </div>
-        <div class="top1">
-            {% for j in range(0,times) %}
-                <div>
-                    <div class="box"></div>
-                    <!-- <div class="box2"></div> -->
-                    <!-- <div class="box"></div>
-                    <div class="box2"></div> -->
-                </div>
-                {% endfor %}
-        </div>
-        <!-- <div class="bottom flexed">
-            {% for i in range(0,num) %}
-                <div class="box2 flexed"></div>
-                <div class="box flexed"></div>
-            {% endfor %}
-        </div> -->
+
+        <table>
+            <tr>
+                <td class="color1"></td>
+                <td class="color2"></td>
+                <td class="color1"></td>
+                <td class="color2"></td>
+                <td class="color1"></td>
+                <td class="color2"></td>
+                <td class="color1"></td>
+                <td class="color2"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
     </div>
 </body>
+
 </html>
