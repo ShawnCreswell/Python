@@ -82,38 +82,57 @@ Associative arrays are sometimes called maps because a key (string) maps to a va
 
 
 
-function makeFrequencyTable2(arr){
-    var newObject = {};
-    var numA = 0;
-    var numb = 0;
-    var numC = 0;
-    var numD = 0;
-    var numB = 0;
+// function makeFrequencyTable2(arr){
+//     var newObject = {};
+//     var numA = 0;
+//     var numb = 0;
+//     var numC = 0;
+//     var numD = 0;
+//     var numB = 0;
 
 
-    for(var i = 0; i < arr.length; i++){
-        if(arr[i] == "a"){
-            newObject[arr[i]] = (numA += 1)
-        }else if(arr[i] == "b"){
-            newObject[arr[i]] = (numb += 1)
-        } else if(arr[i] == "c"){
-            newObject[arr[i]] = (numC += 1)
-        }else if(arr[i] == "d"){
-            newObject[arr[i]] = (numD += 1)
-        }else 
-        newObject[arr[i]] = (numB += 1)
-    }return newObject;
-}
+//     for(var i = 0; i < arr.length; i++){
+//         if(arr[i] == "a"){
+//             newObject[arr[i]] = (numA += 1)
+//         }else if(arr[i] == "b"){
+//             newObject[arr[i]] = (numb += 1)
+//         } else if(arr[i] == "c"){
+//             newObject[arr[i]] = (numC += 1)
+//         }else if(arr[i] == "d"){
+//             newObject[arr[i]] = (numD += 1)
+//         }else 
+//         newObject[arr[i]] = (numB += 1)
+//     }return newObject;
+// }
 
-console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
+// console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
 
 
+// function makeFrequencyTable2(arr){
+//     var newObj = {};
+//     for(var i = 0; i < arr.length; i++){
+//         if(newObj[arr[i]]){
+//             newObj[arr[i]] =+ 1;
+//         }
+//         else{
+//             newObj[arr[i]] = 1
+//         }
+//         return newObj;
+//     }
+// }
 
-// const arr2 = ["a", "b", "a", "c", "B", "c", "c", "d"]
-// const expexted2 = {
-//     a: 2,
-//     b: 1,
-//     c: 3,
-//     B: 1,
-//     d: 1,
-// };
+
+function makeFrequencyTable2(arr) { 
+    obj = {};
+    for(let i = 0; i < arr.length; i++) {
+        if(obj[arr[i]]) {
+            obj[arr[i]] ++;
+        }
+        else {
+            obj[arr[i]] = 1;
+        }
+    }
+    return obj;
+    }
+
+    console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
