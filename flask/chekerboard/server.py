@@ -1,7 +1,5 @@
-
-from os import times
-from flask import Flask, render_template  # Import Flask to allow us to create our app
-app = Flask(__name__)    # Create a new instance of the Flask class called "app"
+from flask import Flask, render_template  
+app = Flask(__name__)   
 
 
 @app.route('/') #@app.route('/repeat/<int:num>/<name>')
@@ -10,17 +8,6 @@ def first():
     return render_template('index.html', title_from_backend = title)  # Return the string 'Hello World!' as a response
     
 
-@app.route('/play/<int:num>/<int:times>') #@app.route('/repeat/<int:num>/<name>')
-def play(num, times):
-    title = "CheckerBoard"
-    return render_template('index.html', num = num, title_from_backend = title, times=times)  # Return the string 'Hello World!' as a response
-    
-
-# @app.route('/play/<int:num>/<string:color>') #@app.route('/repeat/<int:num>/<name>')
-# def color(num, color):
-#     title = "CheckerBoard"
-#     return render_template('index.html', num = num, title_from_backend = title, color = color)  # Return the string 'Hello World!' as a response
-    
 
 
 
