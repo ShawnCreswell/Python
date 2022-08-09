@@ -138,14 +138,31 @@ Associative arrays are sometimes called maps because a key (string) maps to a va
 //     console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
 
 
-const str1 = "abcABC";
-const expected1 = abcABC;
+// const str1 = "abcABC";
+// const expected1 = abcABC;
 
-const str2 = "helloo";
-const expected2 = "helo";
+// const str2 = "helloo";
+// const expected2 = "helo";
 
-const str3 = "";
-const expected3 = "";
 
-const str4 = "aa";
-const expected4 = "a";
+function stringDeDupe(str){
+    let expected2 = " ";
+    obj = {};
+    for(let i = 0; i < str.length; i++){
+        if(obj[str[i]]){
+            obj[str[i]] ++;
+        }
+        else{
+            obj[str[i]] = 1;
+            expected2 += str[i];
+            
+        }
+    } return expected2
+}
+console.log(stringDeDupe("helloo"))
+
+// const str3 = "";
+// const expected3 = "";
+
+// const str4 = "aa";
+// const expected4 = "a";
