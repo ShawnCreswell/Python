@@ -48,4 +48,7 @@ SELECT * FROM dojos LEFT JOIN ninjas on dojos.id = ninjas.dojo_id;
 MANY to MANY
 SELECT * FROM orders
 JOIN items_orders ON orders.id = items_orders.order_id
-JOIN items on items.id = items_orders.item.id;
+JOIN items ON items.id = items_orders.item.id;
+
+SELECT * FROM users JOIN favorites ON users.id = favorites.user_id
+JOIN books ON books.id = favorites.book_id WHERE books.title = "Ruby";
