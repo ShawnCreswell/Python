@@ -42,3 +42,10 @@ Query: Find all the users that favorited to the 5th book
 SELECT * FROM favorites WHERE book_id = 5;
 
 
+ONE TO MANY
+SELECT * FROM dojos LEFT JOIN ninjas on dojos.id = ninjas.dojo_id;
+
+MANY to MANY
+SELECT * FROM orders
+JOIN items_orders ON orders.id = items_orders.order_id
+JOIN items on items.id = items_orders.item.id;
