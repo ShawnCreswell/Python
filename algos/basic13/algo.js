@@ -122,17 +122,30 @@ Associative arrays are sometimes called maps because a key (string) maps to a va
 // }
 
 
-function makeFrequencyTable2(arr) { 
-    obj = {};
-    for(let i = 0; i < arr.length; i++) {
-        if(obj[arr[i]]) {
-            obj[arr[i]] ++;
-        }
-        else {
-            obj[arr[i]] = 1;
-        }
-    }
-    return obj;
-    }
+// function makeFrequencyTable2(arr) { 
+//     obj = {};
+//     for(let i = 0; i < arr.length; i++) {
+//         if(obj[arr[i]]) {
+//             obj[arr[i]] ++;
+//         }
+//         else {
+//             obj[arr[i]] = 1;
+//         }
+//     }
+//     return obj;
+//     }
 
-    console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
+//     console.log(makeFrequencyTable2(["a", "b", "a", "c", "B", "c", "c", "d"]));
+
+
+const str1 = "abcABC";
+const expected1 = abcABC;
+
+const str2 = "helloo";
+const expected2 = "helo";
+
+const str3 = "";
+const expected3 = "";
+
+const str4 = "aa";
+const expected4 = "a";
