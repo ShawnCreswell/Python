@@ -145,24 +145,58 @@ Associative arrays are sometimes called maps because a key (string) maps to a va
 // const expected2 = "helo";
 
 
-function stringDeDupe(str){
-    let expected2 = " ";
-    obj = {};
-    for(let i = 0; i < str.length; i++){
-        if(obj[str[i]]){
-            obj[str[i]] ++;
-        }
-        else{
-            obj[str[i]] = 1;
-            expected2 += str[i];
+// function stringDeDupe(str){
+//     let expected2 = " ";
+//     obj = {};
+//     for(let i = 0; i < str.length; i++){
+//         if(obj[str[i]]){
+//             obj[str[i]] ++;
+//         }
+//         else{
+//             obj[str[i]] = 1;
+//             expected2 += str[i];
             
-        }
-    } return expected2
-}
-console.log(stringDeDupe("helloo"))
+//         }
+//     } return expected2
+// }
+// console.log(stringDeDupe("helloo"))
 
 // const str3 = "";
 // const expected3 = "";
 
 // const str4 = "aa";
 // const expected4 = "a";
+
+
+// function reverseWords(str){
+//     var newString = " ";
+//     const myArr = str.split(" ");
+//     var firstWord = myArr[0];
+//     var secondWord = myArr[1];
+
+//     for(let i = 0; i < Math.floor(myArr.length / 2); i++){
+//         var temp = myArr[i];
+//         myArr[i] = myArr[myArr.length - 1 - i];
+//         myArr[myArr.length - 1 - i] = temp;
+//         newString = myArr[i];
+//     }
+//     return newString;
+// }
+
+// console.log(reverseWords("hello world"));
+
+function reverseWords(str){
+    var newArr = [];
+    var myArr = str.split(" ");
+    for(let i = 0; i < myArr.length; i++){
+        var temp = " "
+        for(let j = myArr[i].length - 1; j >= 0; j--){
+            temp += myArr[i][j] 
+        }
+        newArr.push(temp)
+    }  
+    
+    console.log(newArr.join(' '));
+}
+
+reverseWords("hello world");
