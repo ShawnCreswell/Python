@@ -1,5 +1,5 @@
 from mysqlconnection import connectToMySQL
-
+DATABASE = 'first_flask'
 class Friend:
     def __init__( self , data ):
         self.id = data['id']
@@ -12,7 +12,8 @@ class Friend:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM friends;"
-        results = connectToMySQL('first_flask').query_db(query)
+        results = connectToMySQL(DATABASE).query_db(query)
+        print(results)
         friends = []
         for friend in results:
             friends.append( cls(friend) )
