@@ -45,21 +45,21 @@
             <a href="/">Home</a>
         </div>
         <div>
-            <form action="/show/<int:id>/edit" , method="post">
+            <form action="/update/user" , method="post">
+                <input type="hidden" name="id" value="{{user.id}}">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="{{user.first_name}}">
+                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" value="{{user.first_name}}" placeholder="">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Last Name</label>
-                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="{{user.last_name}}">
+                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" value="{{user.last_name}}" placeholder="">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="{{user.email}}">
+                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" value="{{user.email}}" placeholder="">
                 </div>
-                <a href="/show/{{user.id}}>">Update</a>
-                <!-- <input class="btn btn-primary" type="submit" name="key" value="Update"> -->
+                <input class="btn btn-primary" type="submit" name="key" value="Update">
             </form>
         </div>
     </div>

@@ -185,18 +185,40 @@ Associative arrays are sometimes called maps because a key (string) maps to a va
 
 // console.log(reverseWords("hello world"));
 
-function reverseWords(str){
-    var newArr = [];
-    var myArr = str.split(" ");
-    for(let i = 0; i < myArr.length; i++){
-        var temp = " "
-        for(let j = myArr[i].length - 1; j >= 0; j--){
-            temp += myArr[i][j] 
-        }
-        newArr.push(temp)
-    }  
+// function reverseWords(str){
+//     var newArr = [];
+//     var myArr = str.split(" ");
+//     for(let i = 0; i < myArr.length; i++){
+//         var temp = " "
+//         for(let j = myArr[i].length - 1; j >= 0; j--){
+//             temp += myArr[i][j] 
+//         }
+//         newArr.push(temp)
+//     }  
     
-    console.log(newArr.join(' '));
+//     console.log(newArr.join(' '));
+// }
+
+// reverseWords("hello world");
+
+function parensValid(str){
+    let lcount = 0
+    let rcount = 0
+    for(let i = 0; i < str.length; i++){
+        if(str[i] === "("){
+            lcount++
+        }
+        if(str[i] === ")"){
+            rcount++
+        }
+        if(rcount > lcount){
+            return false
+        }
+    }
+    return lcount === rcount
 }
 
-reverseWords("hello world");
+console.log(parensValid(str1))
+console.log(parensValid(str1))
+console.log(parensValid(str1))
+console.log(parensValid(str1))

@@ -33,6 +33,11 @@
             color: black;
             min-height: 100px;
         }
+
+        body{
+            background-image: url(/flask_mysql/User_flask/flask_app/Static/pexels-suzy-hazelwood-1629236.jpg);
+            background-position: center center;
+        }
     </style>
 </head>
 
@@ -62,14 +67,14 @@
                     <td>{{user.first_name}} {{user.last_name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.created_at}}</td>
-                    <td><a href="/show/{{user.id}}">Show |</a><a href="/show/{{user.id}}/edit">Edit |</a><a href="/Show">Delete </a></td>
+                    <td><a href="/show/{{user.id}}">Show </a>|<a href="/edit/{{user.id}}">Edit </a>|<a href="/delete/{{user.id}}">Delete </a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <form class="border-secondary text-primary" action="/">
-            <!-- <input class="btn btn-primary" type="submit" name="" value="Home"> -->
-            <a href="/create">Add New User</a>
+            <input class="btn btn-primary" type="submit" name="" value="Create">
+
         </form>
     </div>
     <!-- Container end -->
