@@ -3,6 +3,6 @@
 
 
 [server.py](server.py)
-[friend.py](friend.py)
+[user.py](user.py)
 [mysqlconnection.py](mysqlconnection.py)
 
