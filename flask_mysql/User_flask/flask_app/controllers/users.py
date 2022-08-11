@@ -14,10 +14,10 @@ def create():
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
-        "email": request.form['email'],
+        "email": request.form['email'], 
     }
-    User.save(data)
-    return redirect("/")
+    user = User.save(data)
+    return redirect(f"/show/{user}")
 
 @app.route("/create")
 def results():

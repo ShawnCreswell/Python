@@ -35,7 +35,7 @@
         }
 
         body{
-            background-image: url(/flask_mysql/User_flask/flask_app/Static/pexels-suzy-hazelwood-1629236.jpg);
+            background-image: url("https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg?auto=compress&cs=tinysrgb&w=800");
             background-position: center center;
         }
     </style>
@@ -48,7 +48,6 @@
     <div class="container bg-light mt-4 p-4">
 
         <h1>All Users</h1>
-       
         <table class="table table table-striped table-hover border border-dark">
             <thead class="table-dark">
                 <tr>
@@ -72,7 +71,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <form class="border-secondary text-primary" action="/">
+        <form class="border-secondary text-primary" action="/create">
             <input class="btn btn-primary" type="submit" name="" value="Create">
 
         </form>
