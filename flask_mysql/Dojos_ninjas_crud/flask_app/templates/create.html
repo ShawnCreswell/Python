@@ -41,11 +41,18 @@
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
-            <h1>Add a New User</h1>
-            <a href="/">Home</a>
+            <h1>New Ninja</h1>
         </div>
         <div>
-            <form action="/create" , method="post">
+            <form action="/create_ninja" , method="post">
+                <label for="exampleFormControlInput1" class="form-label">Dojo: </label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected></option>
+                    
+                    <option value=""></option>
+                    
+                   
+                  </select>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name </label>
                     <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="">
@@ -55,11 +62,12 @@
                     <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <label for="exampleFormControlInput1" class="form-label">Age</label>
                     <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
                 </div>
                 <input class="btn btn-primary" type="submit" name="key" value="Create">
             </form>
+            <a href="/">Home</a>
         </div>
     </div>
     <!-- Container end -->

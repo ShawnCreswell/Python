@@ -22,7 +22,7 @@ class Ninja:
         ninjas = []
         for ninja in results:
             ninjas.append( cls(ninja) )
-        return ninjas
+        return ninjas 
 
     @classmethod
     def get_one(cls, data):
@@ -32,17 +32,17 @@ class Ninja:
         ninja = Ninja(results[0])
         return ninja
 
-    @classmethod
-    def save(cls, data ):
-        query = "INSERT INTO ninjas ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , NOW() , NOW() );"
-        return connectToMySQL('ninjas').query_db( query, data )
+    # @classmethod
+    # def save(cls, data ):
+    #     query = "INSERT INTO ninjas ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , NOW() , NOW() );"
+    #     return connectToMySQL('ninjas').query_db( query, data )
 
-    @classmethod
-    def destroy(cls, data):
-        query = "DELETE FROM ninjas WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+    # @classmethod
+    # def destroy(cls, data):
+    #     query = "DELETE FROM ninjas WHERE id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)
 
-    @classmethod
-    def update(cls, data):
-        query = "UPDATE ninjas SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+    # @classmethod
+    # def update(cls, data):
+    #     query = "UPDATE ninjas SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)
