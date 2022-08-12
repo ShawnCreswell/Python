@@ -1,8 +1,9 @@
 from crypt import methods
 import email
-from flask_app import app, render_template, redirect, request, session
+from flask_app import app, render_template, redirect, request, session, flash, bcrypt
 from flask_app.models.user import User
-
+# from flask_bcrypt import Bcrypt
+# bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
@@ -12,16 +13,20 @@ def index():
 # ! TO register 
 @app.route('/register', methods = ['POST'])
 def register():
+    print(request.form)
+    if not User.validate_user(request.form):
+        return redirect('/')
+        
+    hashed_pw = bcrypt.generate_password_hash(request.form['password'])
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'], 
-        "password": request.form['password']
+        "password": hashed_pw
     }
     user = User.save(data)
-    # if not User.validate_user(request.form):
-    #     return redirect('/')
     ## Log them in by add them to session
+    print(hashed_pw)
     return redirect(f"/show/{user}")
 
 @app.route("/show/<int:id>")
@@ -36,20 +41,21 @@ def dashboard(id):
 # ! login user
 @app.route('/login', methods = ['POST'])
 def login():
-
-    print(session)
-    session['email'] = request.form['email']
-    session['password'] = request.form['password']
-    ## check database for email they enter
-    if not User.validate_user_email(request.form):
+    # see if the username provided exists in the database
+    data = { "email" : request.form["email"] }
+    user_in_db = User.get_by_email(data)
+    # user is not registered in the db
+    if not user_in_db:
+        flash("Invalid Email/Password")
+        return redirect("/")
+    if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
+        # if we get False after checking the password
+        flash("Invalid Email/Password")
         return redirect('/')
-    ## check password they supply matches the hash in the database
-    if not User.validate_user_password(request.form):
-        return redirect('/')
-    
-    
-    # return redirect(f"/show/{request.form['id']}")
-    return redirect("/")
+    # if the passwords matched, we set the user_id into session
+    session['user_id'] = user_in_db.id
+    # never render on a post!!!
+    return redirect(f"/show/{user_in_db}")
 
 
 #!  TO logout user
