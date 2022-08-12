@@ -16,8 +16,7 @@ def results():
 def create():
     print(request.form)
     ninja = Ninja.save(request.form)
-    return redirect(f"/")
-    # return redirect(f"/show/{request.form['id']}")
+    return redirect(f"/show/{request.form['dojo_id']}")
 
 # ! Read all
 @app.route("/ninjas")

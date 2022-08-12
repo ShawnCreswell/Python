@@ -78,6 +78,12 @@ class Dojo:
         query = "DELETE FROM dojos WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
 
+
+    @staticmethod
+    def validate_dojo(dojo):
+        is_valid = True
+        if len(dojo['name']) < 3:
+            is_valid = False
     # @classmethod
     # def destroy(cls, data):
     #     query = "DELETE FROM ninjas WHERE id = %(id)s ;"

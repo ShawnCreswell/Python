@@ -15,14 +15,14 @@
     <title>Document</title>
 
     <style>
-        body {
+        body{
             background-image: url("https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800");
             background-position: center center;
         }
 
         h1 {
             color: black;
-
+         
         }
 
         label {
@@ -47,34 +47,20 @@
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between">
-            <h1>Dojo:{{dojo.name}} </h1>
+            <h1>User: {{user.id}}</h1>
+            <a href="/">Home</a>
         </div>
+
         <div class="border border-dark p-4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Age</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {% for ninja in dojo.ninjas %}
-                        <th scope="row"></th>
-                        <td>{{ninja.first_name}}</td>
-                        <td>{{ninja.last_name}}</td>
-                        <td>{{ninja.age}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
-            
+
+            <p>Full Name: {{user.first_name}}{{user.last_name}} </p>
+            <p>Email: {{user.email}} </p>
+            <p>Created on: {{user.created_at}}</p>
+            <p>Last updated on: {{user.updated_at}}</p>
         </div>
         <div>
-            <a href="/">Home</a>
+            <a href="/edit/{{user.id}}">Edit </a>|<a href="/delete/{{user.id}}">Delete</a>
+
         </div>
     </div>
     <!-- Container end -->

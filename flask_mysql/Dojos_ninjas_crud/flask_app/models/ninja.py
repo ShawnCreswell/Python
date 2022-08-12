@@ -37,12 +37,12 @@ class Ninja:
     # ! Create
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(age)s, %(dojo_id)s), NOW() , NOW() );"
+        query = "INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(age)s, %(dojo_id)s, NOW() , NOW() );"
         return connectToMySQL(DATABASE).query_db( query, data )
 
     # ! Delete
     @classmethod
-    def destroy(cls, data):s
+    def destroy(cls, data):
         query = "DELETE FROM ninjas WHERE id = %(id)s ;"
         results = connectToMySQL(DATABASE).query_db(query, data)
 

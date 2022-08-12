@@ -15,14 +15,9 @@
     <title>Document</title>
 
     <style>
-        body {
-            background-image: url("https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800");
-            background-position: center center;
-        }
-
         h1 {
             color: black;
-
+         
         }
 
         label {
@@ -31,13 +26,12 @@
 
         .container {
             width: 500px;
-            min-height: 500px;
         }
 
         p {
             /* background-color: yellow; */
             width: 300px;
-            color: black;
+            color: blue;
             min-height: 100px;
         }
     </style>
@@ -46,35 +40,26 @@
 <body>
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
-        <div class="d-flex justify-content-between">
-            <h1>Dojo:{{dojo.name}} </h1>
-        </div>
-        <div class="border border-dark p-4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Age</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {% for ninja in dojo.ninjas %}
-                        <th scope="row"></th>
-                        <td>{{ninja.first_name}}</td>
-                        <td>{{ninja.last_name}}</td>
-                        <td>{{ninja.age}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
-            
+        <div class="d-flex justify-content-between"">
+            <h1>Add a New User</h1>
+            <a href="/">Home</a>
         </div>
         <div>
-            <a href="/">Home</a>
+            <form action="/create" , method="post">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">First Name </label>
+                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <input class="btn btn-primary" type="submit" name="key" value="Create">
+            </form>
         </div>
     </div>
     <!-- Container end -->

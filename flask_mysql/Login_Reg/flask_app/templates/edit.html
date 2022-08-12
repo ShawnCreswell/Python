@@ -15,6 +15,11 @@
     <title>Document</title>
 
     <style>
+        body{
+            background-image: url("https://images.pexels.com/photos/131683/pexels-photo-131683.jpeg?auto=compress&cs=tinysrgb&w=800");
+            background-position: center center;
+        }   
+
         h1 {
             color: black;
          
@@ -34,9 +39,6 @@
             color: blue;
             min-height: 100px;
         }
-        option {
-            color: black;
-        }
     </style>
 </head>
 
@@ -44,33 +46,26 @@
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
-            <h1>New Ninja 2</h1>
+            <h1>Edit User {{user.id}}</h1>
+            <a href="/">Home</a>
         </div>
         <div>
-            <form action="/create_ninja" , method="post">
-                <label for="exampleFormControlInput1" class="form-label">Dojo: </label>
-                <select name="dojo_id" class="form-select" aria-label="Default select example">
-                    {% for dojo in dojos %}
-                    <option value="{{dojo.id}}">{{dojo.name}}</option>
-                    {% endfor %}
-                    
-                </select>
-                <input type="hidden" name="id" value="">
+            <form action="/update/user" , method="post">
+                <input type="hidden" name="id" value="{{user.id}}">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">First Name </label>
-                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" value="{{user.first_name}}" placeholder="">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Last Name</label>
-                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" value="{{user.last_name}}" placeholder="">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Age</label>
-                    <input type="name" name="age" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" value="{{user.email}}" placeholder="">
                 </div>
-                <input class="btn btn-primary" type="submit" name="key" value="Create">
+                <input class="btn btn-primary" type="submit" name="key" value="Update">
             </form>
-            <a href="/">Home</a>
         </div>
     </div>
     <!-- Container end -->
