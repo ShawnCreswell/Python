@@ -14,17 +14,55 @@ def index():
 # ! Create Dojos
 @app.route("/creates", methods=['post'])
 def save():
-    data = {
-        "name": request.form['name'],
-    }
-    Dojo.save(data)
+    dojo = Dojo.save(request.form)
     return redirect("/")
+
+
+
+# ! READ ALL
+@app.route('/')
+def read():
+    dojos = Dojo.get_all()
+    ninjas_per_dojo = []
+    for dojo in dojos:
+        ninjas_per_dojo.append(Dojo.get_one_with_ninjas({'id': dojo.id}))
+
+    return render_template('index.html', dojos = Dojo.get_all(), ninjas_per_dojo = ninjas_per_dojo)
+
+
+
 
 @app.route("/create_ninja")
 def create_ninja():
     print("hello")
     return render_template("create.html")
 
+# ! UPDATE
+@app.route('/edit/<int:id>')
+def edit_dojo(id):
+    data = {'id':id}
+    return render_template('edit_dojo.html', dojo = Dojo.get_one(data))
+
+@app.route('/update/dojo', methods = ['post'])
+def update_dojo():
+    print(request.form)
+    Dojo.update(request.form)
+    return redirect(f"/show/{request.form['id']}")
+
+# ! READ ONE
+@app.route("/show/<int:id>")
+def show(id):
+    data = {
+        "id": id
+    }
+    dojo = Dojo.get_one_with_ninjas(data)
+    return render_template("show.html", dojo = dojo)
+
+# # ! Delete 
+@app.route('/delete/<int:id>')
+def delete_dojo(id):
+    Dojo.destroy({'id': id})
+    return redirect('/')
 
 
 # @app.route("/create", methods=['post'])
@@ -51,14 +89,6 @@ def create_ninja():
 #     print("hello")
 #     return render_template("create.html")
     
-# # ! Show
-@app.route("/show/<int:id>")
-def show(id):
-    data = {
-        "id": id
-    }
-    dojo = Dojo.get_one_with_ninjas(data)
-    return render_template("show.html", dojo = dojo)
 
 
 
@@ -76,11 +106,6 @@ def show(id):
 #     return redirect(f"/show/{request.form['id']}") 
 
     
-# # ! Delete 
-# @app.route('/delete/<int:id>')
-# def delete_ninja(id):
-#     Ninja.destroy({'id': id})
-#     return redirect('/')
 
 
 

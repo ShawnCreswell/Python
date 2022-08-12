@@ -1,37 +1,37 @@
+import re
 from flask_app import app, render_template, redirect, request
 from flask_app.models.ninja import Ninja
 from flask_app.models.dojo import Dojo
 
 
 
-
-# Show
-# @app.route("/")
-# def index():
-#     ninjas = Ninja.get_all()
-#     print(ninjas)
-#     return render_template("index.html")
-
+@app.route("/create_ninja")
+def results():
+    print("hello")
+    return render_template("create.html", dojos = Dojo.get_all())
 
 
 # ! Create Ninjas
 @app.route("/create_ninja", methods=['post'])
 def create():
-    data = {
-        "first_name": request.form['first_name'],
-        "last_name": request.form['last_name'],
-        "age": request.form['age'], 
-    
-    }
-    Ninja.save(data)
-    return redirect("/")
+    print(request.form)
+    ninja = Ninja.save(request.form)
+    return redirect(f"/")
     # return redirect(f"/show/{request.form['id']}")
 
+# ! Read all
+@app.route("/ninjas")
+def ninjas():
+    return render_template('index.html', ninjas = Ninja.get_all())
 
-@app.route("/create_ninja")
-def results():
-    print("hello")
-    return render_template("create.html", dojos = Dojo.get_all())
+# ! READ ONE
+@app.route('/show/ninja/<int:id>')
+def show_ninja(id):
+    data = {'id': id}
+    ninja = Ninja.get_one(data)
+    dojo = Dojo.get_one({'id':ninja.dojo_id})
+    return render_template('show.html', ninja = ninja)
+
     
 # # ! Show
 # @app.route("/show/<int:id>")
@@ -45,24 +45,22 @@ def results():
 
 
 # # ! EDIT
-# @app.route("/edit/<int:id>")
-# def edit_user(id):
-#     data = {
-#         "id": id
-#     }
-#     return render_template("edit.html", ninja = Ninja.get_one(data))
+@app.route("/edit/<int:id>")
+def edit_ninja(id):
+    data = {"id": id}
+    return render_template("edit.html", ninja = Ninja.get_one(data))
 
-# @app.route("/update/user", methods = ['post'])
-# def update_ninja():
-#     Ninja.update(request.form)
-#     return redirect(f"/show/{request.form['id']}") 
+@app.route("/update/ninja", methods = ['post'])
+def update_ninja():
+    Ninja.update(request.form)
+    return redirect(f"/show/{request.form['id']}") 
 
     
 # # ! Delete 
-# @app.route('/delete/<int:id>')
-# def delete_ninja(id):
-#     Ninja.destroy({'id': id})
-#     return redirect('/')
+@app.route('/delete/<int:id>')
+def delete_ninja(id):
+    Ninja.destroy({'id': id})
+    return redirect('/')
 
 
 
