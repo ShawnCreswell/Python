@@ -50,38 +50,55 @@
         <div class="col bg-dark p-4">
             <div>
                 <h1 class="text-primary">Register</h1>
-                <p>
-                    {% with messages = get_flashed_messages() %}
-                    <!-- declare a variable called messages -->
-                        {% if messages %}
-                    <!-- check if there are any messages -->
-                            {% for message in messages %}
-                    <!-- loop through the messages -->
-                                <p>{{message}}</p> <!-- display each message in a paragraph tag -->
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
-                </p>
                 <form action="/register" , method="post">
+                    {% with messages = get_flashed_messages(with_categories = True) %}
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">First Name </label>
                         <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1"
-                            placeholder="">
+                        placeholder="">
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'first_name' %}
+                                    <span class="form-text text-danger">{{message}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Last Name</label>
                         <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1"
                             placeholder="">
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'last_name' %}
+                                    <span class="form-text text-danger">{{message}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email</label>
                         <input type="name" name="email" class="form-control" id="exampleFormControlInput1"
                             placeholder="">
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'email' %}
+                                    <span class="form-text text-danger">{{message}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Password:</label>
                         <input type="password" name="password" class="form-control" id="exampleFormControlInput1"
                             placeholder="">
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'password' %}
+                                    <span class="form-text text-danger">{{message}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Confirm Password:</label>
@@ -90,6 +107,7 @@
                     </div>
                     <input class="btn btn-primary" type="submit" name="key" value="Register">
                 </form>
+                {% endwith %}
             </div>
 
         </div>
@@ -97,22 +115,8 @@
         <div class="col bg-dark p-4"">
             <div>
                 <h1 class=" text-success">Login</h1>
-                <p>
-                    {{session}}
-
-                </p>
-                {% with messages = get_flashed_messages() %}
-                <!-- declare a variable called messages -->
-                    {% if messages %}
-                <!-- check if there are any messages -->
-                        {% for message in messages %}
-                <!-- loop through the messages -->
-                            <p>{{message}}</p> <!-- display each message in a paragraph tag -->
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
             <form action="/login" , method="post">
-                <input type="hidden" name="id" value="{{user.id}}">
+                
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email</label>
                     <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">

@@ -38,6 +38,15 @@ class User:
         user = User(results[0])
         return user
 
+    #     # !email
+    # @classmethod
+    # def get_one(cls, data):
+    #     query = "SELECT * FROM users WHERE id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)
+    #     print(results)
+    #     user = User(results[0])
+    #     return user
+
     @classmethod
     def save(cls, data ):
         query = "INSERT INTO users ( first_name , last_name , email, password, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , NOW() , NOW() );"
@@ -82,7 +91,7 @@ class User:
         # test whether a field matches the pattern
         if not EMAIL_REGEX.match(user['email']): 
             is_valid = False
-            flash("Invalid email address!")
+            flash("Invalid email address!", 'email')
         return is_valid
 
     @staticmethod
@@ -90,14 +99,14 @@ class User:
         is_valid = True
         # test whether a field matches the pattern
         if not EMAIL_REGEX.match(user['password']): 
-            flash("Invalid password!")
+            flash("Invalid password!", 'password')
             is_valid = False
         return is_valid
-
+    # !
     @classmethod
     def get_by_email(cls,data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
-        result = connectToMySQL("mydb").query_db(query,data)
+        result = connectToMySQL(DATABASE).query_db(query,data)
         # Didn't find a matching user
         if len(result) < 1:
             return False

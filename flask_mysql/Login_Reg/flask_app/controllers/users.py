@@ -16,7 +16,7 @@ def register():
     print(request.form)
     if not User.validate_user(request.form):
         return redirect('/')
-        
+
     hashed_pw = bcrypt.generate_password_hash(request.form['password'])
     data = {
         "first_name": request.form['first_name'],
@@ -26,8 +26,17 @@ def register():
     }
     user = User.save(data)
     ## Log them in by add them to session
+    session['user_id'] = user
+    session['first_name'] = request.form['first_name']
     print(hashed_pw)
     return redirect(f"/show/{user}")
+
+# ! So user cant get in routes
+# @app.route('/show')
+# def dashboard2():
+#     if 'user_id' not in session 
+#         return redirect('/logout')
+#     return f"weclome back"
 
 @app.route("/show/<int:id>")
 def dashboard(id):
@@ -35,7 +44,9 @@ def dashboard(id):
         "id":id
     }
     user = User.get_one(data)
-    return render_template('show.html', user = user)    
+    return render_template('show.html', user = user)  
+
+  
 
 
 # ! login user
@@ -53,9 +64,9 @@ def login():
         flash("Invalid Email/Password")
         return redirect('/')
     # if the passwords matched, we set the user_id into session
-    session['user_id'] = user_in_db.id
+    session['first_name'] = user_in_db.first_name
     # never render on a post!!!
-    return redirect(f"/show/{user_in_db}")
+    return redirect(f"/show/{user_in_db.id}")
 
 
 #!  TO logout user
