@@ -17,19 +17,21 @@ from flask_app.models.dojo import Dojo
 # ! Create Ninjas
 @app.route("/create_ninja", methods=['post'])
 def create():
-    dojos = Dojo.get_all()
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
-        "email": request.form['email'], 
+        "age": request.form['age'], 
+    
     }
     Ninja.save(data)
     return redirect("/")
+    # return redirect(f"/show/{request.form['id']}")
+
 
 @app.route("/create_ninja")
 def results():
     print("hello")
-    return render_template("create.html")
+    return render_template("create.html", dojos = Dojo.get_all())
     
 # # ! Show
 # @app.route("/show/<int:id>")

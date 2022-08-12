@@ -34,6 +34,9 @@
             color: blue;
             min-height: 100px;
         }
+        option {
+            color: black;
+        }
     </style>
 </head>
 
@@ -41,18 +44,19 @@
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
-            <h1>New Ninja</h1>
+            <h1>New Ninja 2</h1>
         </div>
         <div>
             <form action="/create_ninja" , method="post">
                 <label for="exampleFormControlInput1" class="form-label">Dojo: </label>
                 <select class="form-select" aria-label="Default select example">
                     <option selected></option>
+                    {% for dojo in dojos %}
+                    <option value="">{{dojo.name}}</option>
+                    {% endfor %}
                     
-                    <option value=""></option>
-                    
-                   
-                  </select>
+                </select>
+                <input type="hidden" name="id" value="">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">First Name </label>
                     <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="">
@@ -63,7 +67,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Age</label>
-                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="name" name="age" class="form-control" id="exampleFormControlInput1" placeholder="">
                 </div>
                 <input class="btn btn-primary" type="submit" name="key" value="Create">
             </form>

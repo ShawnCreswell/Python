@@ -32,10 +32,10 @@ class Ninja:
         ninja = Ninja(results[0])
         return ninja
 
-    # @classmethod
-    # def save(cls, data ):
-    #     query = "INSERT INTO ninjas ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , NOW() , NOW() );"
-    #     return connectToMySQL('ninjas').query_db( query, data )
+    @classmethod
+    def save(cls, data ):
+        query = "INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(age)s , NOW() , NOW() );"
+        return connectToMySQL(DATABASE).query_db( query, data )
 
     # @classmethod
     # def destroy(cls, data):
