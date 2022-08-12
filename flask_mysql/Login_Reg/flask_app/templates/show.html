@@ -21,7 +21,7 @@
         }
 
         h1 {
-            color: black;
+            color: white;
          
         }
 
@@ -37,7 +37,7 @@
         p {
             /* background-color: yellow; */
             width: 300px;
-            color: black;
+            color: white;
             min-height: 100px;
         }
     </style>
@@ -45,23 +45,18 @@
 
 <body>
     <!-- Container start -->
-    <div class="container bg-light mt-4 p-4">
+    <div class="container bg-dark mt-4 p-4">
         <div class="d-flex justify-content-between">
-            <h1>User: {{user.id}}</h1>
+            <h1>Dashboard</h1>
             <a href="/">Home</a>
         </div>
-
+        
         <div class="border border-dark p-4">
+            <p>Welcome: {{user.first_name}}</p>
 
-            <p>Full Name: {{user.first_name}}{{user.last_name}} </p>
-            <p>Email: {{user.email}} </p>
-            <p>Created on: {{user.created_at}}</p>
-            <p>Last updated on: {{user.updated_at}}</p>
+            
         </div>
-        <div>
-            <a href="/edit/{{user.id}}">Edit </a>|<a href="/delete/{{user.id}}">Delete</a>
-
-        </div>
+                
     </div>
     <!-- Container end -->
 </body>

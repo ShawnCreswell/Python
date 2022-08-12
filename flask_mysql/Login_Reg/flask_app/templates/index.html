@@ -30,51 +30,101 @@
         p {
             /* background-color: yellow; */
             width: 300px;
-            color: black;
+            color: white;
             min-height: 100px;
         }
 
-        body{
+        body {
             background-image: url("https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg?auto=compress&cs=tinysrgb&w=800");
             background-position: center center;
+            /* color: ; */
         }
     </style>
 </head>
 
 <body>
     <!-- Container start -->
-    
-    
-    <div class="container bg-light mt-4 p-4">
 
-        <h1>All Users</h1>
-        <table class="table table table-striped table-hover border border-dark">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Actions</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users  %}
-                <tr>
-                    <th scope="row">{{user.id}}</th>
-                    <td>{{user.first_name}} {{user.last_name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.created_at}}</td>
-                    <td><a href="/show/{{user.id}}">Show </a>|<a href="/edit/{{user.id}}">Edit </a>|<a href="/delete/{{user.id}}">Delete </a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <form class="border-secondary text-primary" action="/create">
-            <input class="btn btn-primary" type="submit" name="" value="Create">
+    <div class="container bg-transparent d-flex justify-content-between gap-5 bg-light mt-4 p-4">
+        <div class="col bg-dark p-4">
+            <div>
+                <h1 class="text-primary">Register</h1>
+                <p>
+                    {% with messages = get_flashed_messages() %}
+                    <!-- declare a variable called messages -->
+                        {% if messages %}
+                    <!-- check if there are any messages -->
+                            {% for message in messages %}
+                    <!-- loop through the messages -->
+                                <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </p>
+                <form action="/register" , method="post">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">First Name </label>
+                        <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                        <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="name" name="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Password:</label>
+                        <input type="name" name="password" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Confirm Password:</label>
+                        <input type="name" name="password" class="form-control" id="exampleFormControlInput1"
+                            placeholder="">
+                    </div>
+                    <input class="btn btn-primary" type="submit" name="key" value="Register">
+                </form>
+            </div>
 
-        </form>
+        </div>
+
+        <div class="col bg-dark p-4"">
+            <div>
+                <h1 class=" text-success">Login</h1>
+                <p>
+                    {{session}}
+
+                </p>
+                {% with messages = get_flashed_messages() %}
+                <!-- declare a variable called messages -->
+                    {% if messages %}
+                <!-- check if there are any messages -->
+                        {% for message in messages %}
+                <!-- loop through the messages -->
+                            <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            <form action="/login" , method="post">
+                <input type="hidden" name="id" value="{{user.id}}">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                    <input type="name" name="password" class="form-control" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <input class="btn btn-success" type="submit" name="key" value="Login">
+            </form>
+        </div>
+    </div>
     </div>
     <!-- Container end -->
 </body>
