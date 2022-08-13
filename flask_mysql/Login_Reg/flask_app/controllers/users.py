@@ -7,6 +7,7 @@ from flask_app.models.user import User
 
 @app.route('/')
 def index():
+    session.clear()
     user = User.get_all()
     return render_template('index.html', user = user)    
 
@@ -32,22 +33,21 @@ def register():
     return redirect(f"/show/{user}")
 
 # ! So user cant get in routes
-# @app.route('/show')
-# def dashboard2():
-#     if 'user_id' not in session 
-#         return redirect('/logout')
-#     return f"weclome back"
+@app.route('/show')
+def dashboard2():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    return f"weclome back"
 
 @app.route("/show/<int:id>")
 def dashboard(id):
+    if 'user.id' not in session:
+        return redirect('/')
     data = {
         "id":id
     }
     user = User.get_one(data)
     return render_template('show.html', user = user)  
-
-  
-
 
 # ! login user
 @app.route('/login', methods = ['POST'])
@@ -64,7 +64,7 @@ def login():
         flash("Invalid Email/Password")
         return redirect('/')
     # if the passwords matched, we set the user_id into session
-    session['first_name'] = user_in_db.first_name
+    session['user.id'] = user_in_db.first_name
     # never render on a post!!!
     return redirect(f"/show/{user_in_db.id}")
 
@@ -72,8 +72,7 @@ def login():
 #!  TO logout user
 @app.route('/logout')
 def logout():
-    session.clear()
-    pass
+    # session.clear()
     return redirect('/')
 
     

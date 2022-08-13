@@ -111,15 +111,3 @@ class User:
         if len(result) < 1:
             return False
         return cls(result[0])
-
-    # @classmethod
-    # def get_one(cls, data):
-    #     query = "SELECT * FROM users WHERE id = %(email)s, %(password)s ;"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-    #     print(results)
-    #     user = User(results[0])
-    #     return user
-
-        # if not EMAIL_REGEX.match(user['email']):
-        #     flash("Email must be at least 3 characters.")
-        #     is_valid = False
