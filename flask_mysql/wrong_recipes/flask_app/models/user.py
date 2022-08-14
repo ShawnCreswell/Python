@@ -2,9 +2,13 @@ from operator import imod
 from flask_app import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
+from flask_app.models.recipe import Recipe
 # from flask_bcrypt import Bcrypt        
 # bcrypt = Bcrypt(app)
-DATABASE = 'login_reg'
+
+
+
+DATABASE = 'recipes'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
