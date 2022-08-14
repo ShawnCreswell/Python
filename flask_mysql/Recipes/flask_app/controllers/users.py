@@ -6,6 +6,7 @@ bcrypt = Bcrypt(app)
 # ! Home page
 @app.route("/")
 def index():
+    session.clear()
     user = User.get_all()
     print(user)
     return render_template("index.html", user = user)
@@ -29,6 +30,8 @@ def register():
     ## Log them in by add them to session
     session['user_id'] = user
     session['first_name'] = request.form['first_name']
+    session['last_name'] = request.form['last_name']
+
     print(hashed_pw)
     return redirect(f"/dashboard/{user}")
 
@@ -66,7 +69,8 @@ def login():
         flash("Invalid Email/Password")
         return redirect('/')
     # if the passwords matched, we set the user_id into session
-    session['user.id'] = user_in_db.first_name
+    session['user.id'] = user_in_db.id
+    session['first_name'] = user_in_db.first_name
     # never render on a post!!!
     return redirect(f"/dashboard/{user_in_db.id}")
 

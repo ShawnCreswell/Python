@@ -39,7 +39,7 @@ class Recipe:
     # ! Create
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO recipes (first_name, last_name, age, user_id, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(age)s, %(user_id)s, NOW() , NOW() );"
+        query = "INSERT INTO recipes (name, description, instruction, under, date_made, user_id, created_at, updated_at ) VALUES ( %(name)s , %(description)s , %(instruction)s, %(under)s, %(date_made)s, %(user_id)s, NOW() , NOW() );"
         return connectToMySQL(DATABASE).query_db( query, data )
 
     # ! Delete

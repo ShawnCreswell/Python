@@ -64,7 +64,7 @@ def login():
         flash("Invalid Email/Password")
         return redirect('/')
     # if the passwords matched, we set the user_id into session
-    session['user.id'] = user_in_db.first_name
+    session['user.id'] = user_in_db.id
     # never render on a post!!!
     return redirect(f"/show/{user_in_db.id}")
 

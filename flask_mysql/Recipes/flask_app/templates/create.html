@@ -25,7 +25,7 @@
         }
 
         .container {
-            width: 500px;
+            width: 1000px;
         }
 
         p {
@@ -41,36 +41,63 @@
 </head>
 
 <body>
+    {{session}}
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
-            <h1>New Ninja 2</h1>
+            <h1>Add a recipe</h1>
         </div>
-        <div>
-            <form action="/create_ninja" , method="post">
-                <label for="exampleFormControlInput1" class="form-label">Dojo: </label>
-                <select name="dojo_id" class="form-select" aria-label="Default select example">
-                    {% for dojo in dojos %}
-                    <option value="{{dojo.id}}">{{dojo.name}}</option>
-                    {% endfor %}
-                    
-                </select>
-                <input type="hidden" name="id" value="">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">First Name </label>
-                    <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <form action="/create_recipe" , method="post">
+            <div class="d-flex">
+                    <div class="col">
+                        
+                            <input type="hidden" name="id" value="">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label"> Name </label>
+                                <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Description</label>
+                                <input type="name" name="description" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Instructions</label>
+                                <input type="name" name="instruction" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            </div>
+                            <input class="btn btn-primary" type="submit" name="key" value="Submit">
+                            <a href="/">Home</a>
+                        
+                    </div>
+                    <div class="col">
+                        
+                            <div class="mb-3 p-5">
+                                <label for="exampleFormControlInput1" class="form-label">Date Cooked/Made: </label>
+                                <input type="name" name="date_made" class="form-control  border border-3 border-dark" id="exampleFormControlInput1"
+                                placeholder="">
+                            </div>
+                            <div class="mb-3 p-5">
+                                <label for="exampleFormControlInput1" class="form-label">Under: </label>
+                                <input type="name" name="under" class="form-control  border border-3 border-dark" id="exampleFormControlInput1"
+                                placeholder="">
+                            </div>
+                        
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Last Name</label>
-                    <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Age</label>
-                    <input type="name" name="age" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <input class="btn btn-primary" type="submit" name="key" value="Create">
             </form>
-            <a href="/">Home</a>
+                    <div class="m-5">
+                        Under 30 minutes?
+                        <div>
+                            <!-- <div class="form-check">
+                                <input class="form-check-input" type="radio" name="under" id="flexRadioDefault1" value="Yes">
+                                <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="under" id="flexRadioDefault2" value="No">
+                                <label class="form-check-label" for="flexRadioDefault2">No</label>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
     <!-- Container end -->

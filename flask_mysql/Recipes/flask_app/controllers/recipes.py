@@ -1,22 +1,35 @@
 import re
-from flask_app import app, render_template, redirect, request
+from flask_app import app, render_template, redirect, request, session
 from flask_app.models.recipe import Recipe
 from flask_app.models.user import User
 
 
 
+
+
+# ! Create recipes
 @app.route("/create_recipe")
 def results():
     print("hello")
     return render_template("create.html", users = User.get_all())
 
-
-# ! Create recipes
 @app.route("/create_recipe", methods=['post'])
 def create():
+    data = {
+        "name": request.form['name'],
+        "description": request.form['description'],
+        "instruction": request.form['instruction'], 
+        "under": request.form['under'], 
+        "date_made": request.form['date_made'], 
+        "user_id": session['user.id']
+    }
+    user = session['user.id']
+    Recipe.save(data)
     print(request.form)
-    recipe = Recipe.save(request.form)
-    return redirect(f"/show/{request.form['user_id']}")
+    # recipe = Recipe.save(request.form)
+    # return redirect(f"/dashboard/{request.form['user_id']}")
+    return redirect(f"/dashboard/{user}")
+
 
 # ! Read all
 # @app.route("/recipes")
