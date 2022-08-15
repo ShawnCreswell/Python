@@ -89,14 +89,14 @@ def read():
 
 
 
-@app.route('/logout')
-def read():
-    users = User.get_all()
-    recipes_per_user = []
-    for user in users:
-        recipes_per_user.append(User.get_one_with_recipes({'id': user.id}))
+# @app.route('/logout')
+# def read():
+#     users = User.get_all()
+#     recipes_per_user = []
+#     for user in users:
+#         recipes_per_user.append(User.get_one_with_recipes({'id': user.id}))
 
-    return render_template('index.html', users = User.get_all(), recipes_per_user = recipes_per_user)
+#     return render_template('index.html', users = User.get_all(), recipes_per_user = recipes_per_user)
 
 
 # ! UPDATE
