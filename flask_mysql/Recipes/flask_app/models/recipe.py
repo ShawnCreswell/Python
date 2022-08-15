@@ -13,6 +13,9 @@ class Recipe:
         self.instruction = data['instruction']
         self.under = data['under']
         self.date_made = data['date_made']
+        self.user_id = data['user_id']
+        if 'first_name' in data:    
+            self.first_name = data ['first_name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
@@ -27,18 +30,28 @@ class Recipe:
             recipes.append( cls(recipe) )
         return recipes 
 
-    # ! READ/RETRIEVE ONE
     @classmethod
-    def get_one(cls, data):
-        query = "SELECT * FROM recipes WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+    def get_all_with_user(cls):
+        query = "SELECT * FROM recipes JOIN users ON recipes.user_id = users.id;"
+        results = connectToMySQL(DATABASE).query_db(query)
         print(results)
-        recipe = Recipe(results[0])
-        return recipe
+        recipes =[]
+        for recipe in results:
+            recipes.append(cls(recipe))
+        return recipes
+
+    # ! READ/RETRIEVE ONE
+    # @classmethod
+    # def get_one(cls, data):
+    #     query = "SELECT * FROM recipes WHERE id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)
+    #     print(results)
+    #     recipe = Recipe(results[0])
+    #     return recipe
 
     @classmethod
     def get_one_recipe(cls, data):
-        query = "SELECT * FROM recipes WHERE user_id = %(user_id)s ;"
+        query = "SELECT * FROM recipes WHERE id = %(id)s ;"
         results = connectToMySQL(DATABASE).query_db(query, data)
         print(results)
         recipe = Recipe(results[0])
@@ -54,10 +67,16 @@ class Recipe:
     @classmethod
     def destroy(cls, data):
         query = "DELETE FROM recipes WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+        return  connectToMySQL(DATABASE).query_db(query, data)
 
     # ! Update
     @classmethod
-    def update(cls, data):
-        query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
+    def update2(cls, data):
+        query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, under = %(under)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    
+    # @classmethod
+    # def update(cls, data):
+    #     query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)

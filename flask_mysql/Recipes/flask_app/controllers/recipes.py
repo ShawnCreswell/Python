@@ -9,7 +9,7 @@ from flask_app.models.user import User
 
 # ! Create recipes
 @app.route("/create_recipe")
-def results():
+def resultss():
     print("hello")
     return render_template("create.html", users = User.get_all())
 
@@ -21,9 +21,9 @@ def create():
         "instruction": request.form['instruction'], 
         "under": request.form['under'], 
         "date_made": request.form['date_made'], 
-        "user_id": session['user.id']
+        "user_id": session['user_id']
     }
-    user = session['user.id']
+    user = session['user_id']
     Recipe.save(data)
     print(request.form)
     # recipe = Recipe.save(request.form)
@@ -32,13 +32,19 @@ def create():
 
 
 # ! Read all
-# @app.route("/recipes")
-# def recipes():
-#     return render_template('index.html', recipes = Recipe.get_all())
-
-# @app.route("/dashboard/<int:id>")
-# def recipes():
-#     return render_template('dashboard/{{user.id}}', recipes = Recipe.get_all())
+@app.route("/dashboard/<int:id>")
+def index3(id):
+    data = {
+        "id": id
+    }
+    # user = User.get_one(data)
+    user = User.get_one_with_recipes(data)
+    recipes =  Recipe.get_all_with_user()
+    # user_names = User.get_one_name(data)
+    # print("****************")
+    # print(user_names)
+    print(user)
+    return render_template("dashboard.html", user = user, recipes=recipes)
 
 # @app.route("/dashboard/<int:id>")
 # def dashboard_recipe(id):
@@ -80,45 +86,50 @@ def create():
 #     Recipe.update(request.form)
 #     return redirect(f"/show/{request.form['id']}")
 
-@app.route("/edit_recipe/<int:user_id>")
-def edit_recipe(user_id):
+@app.route("/edit_recipe/<int:id>")
+def edit_recipe(id):
     data = {
-        "user_id": user_id
+        "id": id
     }
-    # user = User.get_one_with_recipes(data)
-    recipe = Recipe.get_one_recipe(data)
+    return render_template("edit.html", recipe = Recipe.get_one_recipe(data))
 
-    return render_template("edit.html", recipe = recipe)
-    # return render_template("edit.html", user = user)
+# @app.route("/edit_recipe/<int:id>")
+# def edit_recipe2(id):
+#     data = {
+#         "id": id
+#     }
+#     return redirect("/dashboard/{{user_id}}")
 
-# @app.route("/edit_recipe")
-# def update_recipe():
-#     print("hello")
-#     return render_template("edit.html", user = User.get_all())
 
-@app.route("/edit_recipe", methods=['post'])
+
+
+@app.route("/update/recipe", methods=['post'])
 def update():
     data = {
         "name": request.form['name'],
         "description": request.form['description'],
-        "instruction": request.form['instruction'], 
-        "under": request.form['under'], 
-        "date_made": request.form['date_made'], 
-        "user_id": session['user.id']
+        "instruction": request.form['instruction'],
+        "date_made": request.form['date_made'],
+        "under": request.form['under'],
+        "user_id": session['user_id'],
+        "id": request.form['id']
     }
-    user = session['user.id']
-    Recipe.update(data)
+
     print(request.form)
-    # recipe = Recipe.save(request.form)
-    # return redirect(f"/dashboard/{request.form['user_id']}")
+    
+    Recipe.update2(data)
+    user = session['user_id']
     return redirect(f"/dashboard/{user}")
 
+
+
     
-# # # ! Delete 
-# @app.route('/delete/<int:id>')
-# def delete_recipe(id):
-#     Recipe.destroy({'id': id})
-#     return redirect('/')
+# # ! Delete 
+@app.route('/delete/<int:id>')
+def delete_recipe(id):
+    Recipe.destroy({'id': id})
+    user = session['user_id']
+    return redirect(f"/dashboard/{user}")
 
 
 

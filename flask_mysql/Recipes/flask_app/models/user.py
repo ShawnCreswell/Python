@@ -40,6 +40,13 @@ class User:
         user = User(result[0])
         return user
 
+    # @classmethod
+    # def get_one_name(cls,data):
+    #     query = "SELECT first_name FROM users LEFT JOIN recipes ON users.id = recipes.user_id WHERE recipes.user_id= 7;"
+    #     result = connectToMySQL(DATABASE).query_db(query, data)
+    #     print(result)
+    #     user_names = User(result[0])
+    #     return user_names
 
     @classmethod
     def get_one_with_recipes(cls, data):

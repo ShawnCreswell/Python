@@ -15,7 +15,7 @@
     <title>Recipe</title>
 
     <style>
-        body{
+        body {
             background-image: url("https://images.pexels.com/photos/245250/pexels-photo-245250.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             background-position: center center;
         }
@@ -63,24 +63,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for recipe in user.recipes %}
+                    {% for recipe in recipes %}
                     <tr>
                         <td>{{recipe.name}}</td>
-                        <td>{{recipe.under}}</td>
-                        <td>{{recipe.user_id}}</td>
-                        <td><a href="/dashboard/recipe/{{user.id}}">view recipe </a>|<a href="/edit_recipe/{{user.id}}">edit </a>|<a href="/delete/{{user.id}}">Delete </a></td>
+                        <td>
+                            {% if recipe.under %}
+                            yes
+                            {% else %}
+                            no
+                            {% endif %}
+                        </td>
+                        <td>{{recipe.first_name}}</td>
+                        <td>
+                            <a href="/dashboard/recipe/{{recipe.user_id}}">view recipe </a>
+                            {% if recipe.user_id == session.user_id %}
+                            |<a href="/edit_recipe/{{recipe.id}}">edit </a>
+                            |<a href="/delete/{{recipe.id}}">Delete </a>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-
-            
         </div>
-
-        <!-- <form action="/logout" , method="post">
-            <input class="btn btn-success" type="submit" name="key" value="Logout">
-            <a href="/"">logout</a>
-        </form> -->
     </div>
     <!-- Container end -->
 </body>

@@ -49,11 +49,12 @@
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
             <h1>Add a recipe</h1>
+            <a href="/dashboard/{{session.user_id}}">back to recipes</a>
+            <a href="/">Logout</a>
         </div>
         <form action="/create_recipe" , method="post">
             <div class="d-flex">
-                    <div class="col">
-                        
+                    <div class="col">  
                             <input type="hidden" name="id" value="">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label"> Name </label>
@@ -69,38 +70,26 @@
                             </div>
                             <input class="btn btn-primary" type="submit" name="key" value="Submit">
                             <a href="/">Home</a>
-                        
                     </div>
-                    <div class="col">
-                        
+                    <div class="col"> 
                             <div class="mb-3 p-5">
                                 <label for="exampleFormControlInput1" class="form-label">Date Cooked/Made: </label>
                                 <input type="name" name="date_made" class="form-control  border border-3 border-dark" id="exampleFormControlInput1"
                                 placeholder="">
                             </div>
-                            <div class="mb-3 p-5">
-                                <label for="exampleFormControlInput1" class="form-label">Under 30 minutes?: </label>
-                                <input type="name" name="under" class="form-control  border border-3 border-dark" id="exampleFormControlInput1"
-                                placeholder="">
-                            </div>
-                        
                     </div>
                 </div>
-            </form>
-                    <div class="m-5">
-                        Under 30 minutes?
-                        <div>
-                            <!-- <div class="form-check">
-                                <input class="form-check-input" type="radio" name="under" id="flexRadioDefault1" value="Yes">
-                                <label class="form-check-label" for="flexRadioDefault1">Yes</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="under" id="flexRadioDefault2" value="No">
-                                <label class="form-check-label" for="flexRadioDefault2">No</label>
-                            </div> -->
+                <div class="m-5">
+                    Under 30 minutes?
+                    <div>
+                        <label for="under_30">yes</label>
+                        <input type="radio" name="under" id="under" value="1">
+                        <label for="under_30">no</label>
+                        <input type="radio" name="under" id="under" value="0">
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
     </div>
     <!-- Container end -->

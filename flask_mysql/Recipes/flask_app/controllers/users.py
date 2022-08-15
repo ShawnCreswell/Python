@@ -36,6 +36,7 @@ def register():
     print(hashed_pw)
     return redirect(f"/dashboard/{user}")
 
+# ! Read ALl
 @app.route("/dashboard/<int:id>")
 def index2(id):
     data = {
@@ -43,16 +44,10 @@ def index2(id):
     }
     # user = User.get_one(data)
     user = User.get_one_with_recipes(data)
+    recipes =  Recipe.get_all_with_user()
     print(user)
-    return render_template("dashboard.html", user = user)
+    return render_template("dashboard.html", user = user, recipes=recipes)
 
-# @app.route("/dashboard/<int:id>")
-# def show(id):
-#     data = {
-#         "id": id
-#     }
-#     user = User.get_one_with_recipes(data)
-#     return render_template("dashboard.html", user = user)
 
 
 # ! login user
@@ -71,46 +66,12 @@ def login():
         return redirect('/')
     # if the passwords matched, we set the user_id into session
     session['user.id'] = user_in_db.id
+    session['user_id'] = user_in_db.id
     session['first_name'] = user_in_db.first_name
     # never render on a post!!!
     return redirect(f"/dashboard/{user_in_db.id}")
 
-
-
-# # ! READ ALL
-@app.route("/dashboard/<int:id>")
-def read():
-    users = User.get_all()
-    recipes_per_user = []
-    for user in users:
-        recipes_per_user.append(User.get_one_with_recipes({'id': user.id}))
-
-    return render_template('index.html', users = User.get_all(), recipes_per_user = recipes_per_user)
-
-
-
-
-# @app.route('/logout')
-# def read():
-#     users = User.get_all()
-#     recipes_per_user = []
-#     for user in users:
-#         recipes_per_user.append(User.get_one_with_recipes({'id': user.id}))
-
-#     return render_template('index.html', users = User.get_all(), recipes_per_user = recipes_per_user)
-
-
 # ! UPDATE
-# @app.route('/edit/<int:id>')
-# def edit_user(id):
-#     data = {'id':id}
-#     return render_template('edit_user.html', user = User.get_one(data))
-
-# @app.route('/update/user', methods = ['post'])
-# def update_user():
-#     print(request.form)
-#     User.update(request.form)
-#     return redirect(f"/show/{request.form['id']}")
 
 @app.route("/create_recipe")
 def create_recipe():
@@ -119,63 +80,17 @@ def create_recipe():
 # def index2():
 
 # ! READ ONE
-@app.route("/dashboard/<int:id>")
-def show(id):
-    data = {
-        "id": id
-    }
-    user = User.get_one_with_recipes(data)
-    return render_template("dashboard.html", user = user)
-
 @app.route("/dashboard/recipe/<int:id>")
 def show_recipe(id):
     data = {
         "id": id
     }
     user = User.get_one_with_recipes(data)
+
     # recipe = Recipe.get_one(data)
 
     # return render_template("show.html", user = user, recipe = recipe)
     return render_template("show.html", user = user)
-
-
-
-# # # ! Delete 
-# @app.route('/delete/<int:id>')
-# def delete_user(id):
-#     User.destroy({'id': id})
-#     return redirect('/')
-
-
-# @app.route("/create", methods=['post'])
-# def create():
-#     data = {
-#         "first_name": request.form['first_name'],
-#         "last_name": request.form['last_name'],
-#         "email": request.form['email'], 
-#     }
-#     recipe = recipe.save(data)
-#     return redirect(f"/show/{recipe}")
-
-
-# # ! EDIT
-# @app.route("/edit/<int:id>")
-# def edit_user(id):
-#     data = {
-#         "id": id
-#     }
-#     return render_template("edit.html", recipe = recipe.get_one(data))
-
-# @app.route("/update/user", methods = ['post'])
-# def update_recipe():
-#     recipe.update(request.form)
-#     return redirect(f"/show/{request.form['id']}") 
-
-    
-
-
-
-
 
 @app.route("/")
 def home():
