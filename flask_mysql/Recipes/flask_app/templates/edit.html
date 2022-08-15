@@ -50,14 +50,14 @@
         <div class="d-flex justify-content-between"">
             <h1>Add a recipe</h1>
         </div>
-        <form action="/create_recipe" , method="post">
+        <form action="/edit_recipe" , method="post">
             <div class="d-flex">
                     <div class="col">
                         
                             <input type="hidden" name="id" value="">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label"> Name </label>
-                                <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{recipe.name}}">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>

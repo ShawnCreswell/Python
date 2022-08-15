@@ -1,3 +1,4 @@
+from ..models.recipe import Recipe
 from flask_app import app, render_template, redirect, request, session, flash
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
@@ -126,6 +127,18 @@ def show(id):
     user = User.get_one_with_recipes(data)
     return render_template("dashboard.html", user = user)
 
+@app.route("/dashboard/recipe/<int:id>")
+def show_recipe(id):
+    data = {
+        "id": id
+    }
+    user = User.get_one_with_recipes(data)
+    # recipe = Recipe.get_one(data)
+
+    # return render_template("show.html", user = user, recipe = recipe)
+    return render_template("show.html", user = user)
+
+
 
 # # # ! Delete 
 # @app.route('/delete/<int:id>')
@@ -143,22 +156,6 @@ def show(id):
 #     }
 #     recipe = recipe.save(data)
 #     return redirect(f"/show/{recipe}")
-
-
-
-
-
-
-
-
-
-
-# @app.route("/create")
-# def results():
-#     print("hello")
-#     return render_template("create.html")
-    
-
 
 
 # # ! EDIT

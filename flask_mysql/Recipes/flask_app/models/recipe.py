@@ -36,6 +36,14 @@ class Recipe:
         recipe = Recipe(results[0])
         return recipe
 
+    @classmethod
+    def get_one_recipe(cls, data):
+        query = "SELECT * FROM recipes WHERE user_id = %(user_id)s ;"
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        print(results)
+        recipe = Recipe(results[0])
+        return recipe
+
     # ! Create
     @classmethod
     def save(cls, data ):
@@ -51,5 +59,5 @@ class Recipe:
     # ! Update
     @classmethod
     def update(cls, data):
-        query = "UPDATE recipes SET first_name = %(first_name)s, last_name = %(last_name)s, age = %(age)s, user_id = %(user_id)s WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+        query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
+        return connectToMySQL(DATABASE).query_db(query, data)
