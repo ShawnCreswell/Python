@@ -79,6 +79,10 @@ class Comment:
             flash("Thought must be at least 5 characters.", 'text')
         return is_valid
     
+
+
+
+
     # @classmethod
     # def update(cls, data):
     #     query = "UPDATE comments SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
