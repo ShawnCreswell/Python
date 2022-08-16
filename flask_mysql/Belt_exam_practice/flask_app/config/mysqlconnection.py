@@ -28,10 +28,10 @@ class MySQLConnection:
                     # if the query is not an insert or a select, such as an update or delete, commit the changes
                     # return nothing
                     self.connection.commit()
-            # except Exception as e:
-            #     # in case the query fails
-            #     print("Something went wrong", e)
-            #     return False
+            except Exception as e:
+                # in case the query fails
+                print("Something went wrong", e)
+                return False
             finally:
                 # close the connection
                 self.connection.close() 

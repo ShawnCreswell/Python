@@ -1,17 +1,19 @@
-from crypt import methods
-import email
-from flask_app import app, render_template, redirect, request, session, flash, bcrypt
+from ..models.comment import Comment
+from flask_app import app, render_template, redirect, request, session, flash
 from flask_app.models.user import User
-# from flask_bcrypt import Bcrypt
-# bcrypt = Bcrypt(app)
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt(app)
 
-@app.route('/')
+# ! Home page
+@app.route("/")
 def index():
     session.clear()
     user = User.get_all()
-    return render_template('index.html', user = user)    
+    print(user)
+    return render_template("index.html", user = user)
 
-# ! TO register 
+
+# ! Create User
 @app.route('/register', methods = ['POST'])
 def register():
     print(request.form)
@@ -27,39 +29,26 @@ def register():
     }
     user = User.save(data)
     ## Log them in by add them to session
-    session['user.id'] = user
+    session['user_id'] = user
     session['first_name'] = request.form['first_name']
+    session['last_name'] = request.form['last_name']
+
     print(hashed_pw)
     return redirect(f"/dashboard/{user}")
 
-# ! So user cant get in routes
-@app.route('/dashboard')
-def dashboard2():
-    if 'user_id' not in session:
-        return redirect('/logout')
-    return f"weclome back"
-
-# ! for create_recipe
-@app.route("/create_recipe")
-def to_create_recipe():
-    return render_template("create.html")
-
-
-@app.route("/create_recipe", methods = ['POST'])
-def create_recipe():
+# ! Read ALl
+@app.route("/dashboard/<int:id>")
+def index2(id):
     data = {
-        "name": request.form['name'],
-        "description": request.form['description'],
-        "instruction": request.form['instruction'], 
-        "date_made": request.form['date_made'], 
-        "user_id": request.form['user_id']
+        "id": id
     }
-    print(request.form)
-    recipe = Recipe.save(data)
-    print(data)
-    # user = User.get_one()
-    # return redirect(f"/dashboard/{user}")
-    return redirect("/dashboard")
+    # user = User.get_one(data)
+    user = User.get_one_with_comments(data)
+    comments =  Comment.get_all_with_user()
+    print(user)
+    return render_template("dashboard.html", user = user, comments=comments)
+
+
 
 # ! login user
 @app.route('/login', methods = ['POST'])
@@ -76,26 +65,35 @@ def login():
         flash("Invalid Email/Password")
         return redirect('/')
     # if the passwords matched, we set the user_id into session
-    session['user.id'] = user_in_db.first_name
+    session['user.id'] = user_in_db.id
+    session['user_id'] = user_in_db.id
+    session['first_name'] = user_in_db.first_name
     # never render on a post!!!
     return redirect(f"/dashboard/{user_in_db.id}")
 
+# ! UPDATE
 
-#!  TO logout user
-@app.route('/logout')
-def logout():
-    # session.clear()
-    return redirect('/')
+@app.route("/create_comment")
+def create_comments():
+    print("hello")
+    return render_template("create.html")
 
-    
-# !  Optional
-@app.route('/add_recipe/user')
-def add_recipe_user():
-    pass
 
-@app.route('/update_user', methods = ['POST'])
-def update_user():
-    pass
+
+
+# ! READ ONE
+@app.route("/dashboard/comment/<int:id>")
+def show_comment(id):
+    data = {
+        "id": id
+    }
+    user = User.get_one_with_comments(data)
+    return render_template("show.html", user = user)
+
+@app.route("/")
+def home():
+    print("hello")
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
