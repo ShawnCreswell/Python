@@ -55,7 +55,7 @@
         <form action="/create_comment" , method="post">
             <div class="d-flex">
                     <div class="col">  
-                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="{{user.id}}" value="{{user_id}}">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">text </label>
                                 <input type="name" name="text" class="form-control" id="exampleFormControlInput1" placeholder="">

@@ -42,6 +42,8 @@ def index2(id):
     data = {
         "id": id
     }
+    if 'user_id' not in session:
+        return redirect('/')
     # user = User.get_one(data)
     user = User.get_one_with_comments(data)
     comments =  Comment.get_all_with_user()
@@ -64,6 +66,7 @@ def login():
         # if we get False after checking the password
         flash("Invalid Email/Password")
         return redirect('/')
+
     # if the passwords matched, we set the user_id into session
     session['user.id'] = user_in_db.id
     session['user_id'] = user_in_db.id
@@ -84,16 +87,47 @@ def create_comments():
 # ! READ ONE
 @app.route("/dashboard/comment/<int:id>")
 def show_comment(id):
+    if 'user_id' not in session:
+        return redirect('/')
     data = {
         "id": id
     }
     user = User.get_one_with_comments(data)
     return render_template("show.html", user = user)
 
+@app.route("/edit/user/<int:id>")
+def edit_user(id):
+    data = {
+        "id": session['user_id']
+    }
+    print("hello")
+    return render_template("edit_user.html", user = User.get_one(data))
+
+@app.route("/edit/user", methods=['post'])
+def update_user():
+
+    users = session['user_id']
+    if not User.validate_user(request.form):
+        return redirect(f'/edit/user/{users}')
+    # if not User.validate_user_password(request.form):
+    #     return redirect('/edit/user')
+    hashed_pw = bcrypt.generate_password_hash(request.form['password'])
+    data = {
+        "id": session['user_id'],
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email'], 
+        "password": hashed_pw
+    }
+    User.update(data)
+    print(request.form)
+    return redirect(f"/dashboard/{users}")
+
 @app.route("/")
 def home():
     print("hello")
     return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

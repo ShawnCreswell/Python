@@ -9,6 +9,7 @@ class Comment:
     def __init__( self , data ):
         self.id = data['id']
         self.text = data['text']
+        self.like = data['like']
         self.user_id = data['user_id']
         if 'first_name' in data:    
             self.first_name = data ['first_name']
@@ -56,7 +57,7 @@ class Comment:
     # ! Create
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO comments (text, user_id, created_at, updated_at ) VALUES ( %(text)s , %(user_id)s, NOW() , NOW() );"
+        query = "INSERT INTO comments (text, user_id, created_at, updated_at ) VALUES ( %(text)s ,%(user_id)s, NOW() , NOW() );"
         return connectToMySQL(DATABASE).query_db( query, data )
 
     # ! Delete
@@ -68,8 +69,15 @@ class Comment:
     # ! Update
     @classmethod
     def update2(cls, data):
-        query = "UPDATE comments SET name = %(text)s, user_id = %(user_id)s WHERE id = %(id)s ;"
+        query = "UPDATE comments SET text = %(text)s, like = %(like)s, user_id = %(user_id)s WHERE id = %(id)s ;"
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    @classmethod
+    def update_like(cls, data):
+        # query = "UPDATE comments SET like = %(like)s + 1  WHERE id = %(id)s ;"
+        query = "UPDATE comments SET comments.like = %(like)s + 1  WHERE id = %(id)s"
+        # UPDATE comments SET comments.like = comments.like + 1  WHERE id = 9
+        return  connectToMySQL(DATABASE).query_db(query, data)
 
     @staticmethod
     def validate_thought(comment):

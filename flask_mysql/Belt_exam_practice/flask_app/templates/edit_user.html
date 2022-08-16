@@ -48,13 +48,13 @@
     <div class="container bg-transparent d-flex justify-content-between gap-5 bg-light mt-4 p-4">
         <div class="col bg-dark p-4">
             <div>
-                <h1 class="text-primary">Register</h1>
-                <form action="/register" , method="post">
+                <h1 class="text-primary">EDIT USER</h1>
+                <form action="/edit/user" , method="post">
                     {% with messages = get_flashed_messages(with_categories = True) %}
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">First Name </label>
                         <input type="name" name="first_name" class="form-control" id="exampleFormControlInput1"
-                        placeholder="">
+                        placeholder="" value="{{user.first_name}}">
                         {% if messages %}
                             {% for category, message in messages %}
                                 {% if category == 'first_name' %}
@@ -66,7 +66,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Last Name</label>
                         <input type="name" name="last_name" class="form-control" id="exampleFormControlInput1"
-                            placeholder="">
+                            placeholder="" value="{{user.last_name}}">
                         {% if messages %}
                             {% for category, message in messages %}
                                 {% if category == 'last_name' %}
@@ -78,7 +78,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email</label>
                         <input type="name" name="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="">
+                            placeholder="" value="{{user.email}}">
                         {% if messages %}
                             {% for category, message in messages %}
                                 {% if category == 'email' %}
@@ -90,7 +90,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Password:</label>
                         <input type="password" name="password" class="form-control" id="exampleFormControlInput1"
-                            placeholder="">
+                            placeholder="Enter Your password" value="">
                         {% if messages %}
                             {% for category, message in messages %}
                                 {% if category == 'password' %}
@@ -102,35 +102,23 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Confirm Password:</label>
                         <input type="password" name="password_confirm" class="form-control" id="exampleFormControlInput1"
-                            placeholder="">
+                            placeholder="Enter Your password" value="">
+                            {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category == 'password' %}
+                                    <span class="form-text text-danger">{{message}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    <input class="btn btn-primary" type="submit" name="key" value="Register">
+                    <input class="btn btn-primary" type="submit" name="" value="Update">
                 </form>
                 {% endwith %}
             </div>
 
         </div>
 
-        <div class="col bg-dark p-4"">
-            <div>
-                <h1 class=" text-success">Login</h1>
-            <form action="/login" , method="post">
-                
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="name" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Password</label>
-                    <input type="name" name="password" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <input class="btn btn-success" type="submit" name="" value="Login">
-                <p>
 
-                    {{session}}
-                </p>
-            </form>
-        </div>
     </div>
     </div>
     <!-- Container end -->

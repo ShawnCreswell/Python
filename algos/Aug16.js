@@ -25,4 +25,4 @@ function rotatestr(str,amt){
     }
     return newstring
 }
-console.log(rotatestr("Hello World",11))
+console.log(rotatestr("Hello World",6))

@@ -47,12 +47,16 @@
     <!-- Container start -->
     <div class="container bg-light mt-4 p-4">
         {{session}}
+        {{session.like}}
+        {{session.count}}
         {% with messages = get_flashed_messages(with_categories = True) %}
         <form action="/create_a_comment" , method="post">
             
             <div class="d-flex justify-content-between">
                 <h1>Welcome, {{user.first_name}} </h1>
                 <a href="/">Logout</a>
+                <a href="/edit/user/{{user.id}}">edit user</a>
+                
             </div>
             {% if messages %}
                     {% for category, message in messages %}
@@ -88,13 +92,13 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center m-0 p-0">
-                <form action="/up/{{user.id}}">
-                    <input class="btn btn-dark" style="width: 100px;" type="submit" name="{{user.id}}" value="Like">
+                <form action="/up" , method="post">
+                    <input class="btn btn-dark" style="width: 100px;" type="submit" name="like" value="Like">
                 </form>
-                <form action="/down/{{user.id}}">
+                <!-- <form action="/down/{{user.id}}">
                     <input class="btn btn-danger" style="width: 100px;" type="submit" name="{{user.id}}" value="Un-Like">
-                </form>
-                <p class="ms-5">{{session.count}}</p>
+                </form> -->
+                <p class="ms-5">{{comment.like}}</p>
             </div>
 
             {% endfor %}

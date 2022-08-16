@@ -1,3 +1,4 @@
+from crypt import methods
 import re
 from flask_app import app, render_template, redirect, request, session
 from flask_app.models.comment import Comment
@@ -16,36 +17,38 @@ from flask_app.models.user import User
 @app.route("/create_a_comment", methods=['post'])
 def create():
     print(request.form)
-    user = session['user_id']
     if not Comment.validate_thought(request.form):
         return redirect(f"/dashboard/{user}")
     data = {
-        "text": request.form['text'], 
+        "text": request.form['text'],
         "user_id": session['user_id']
+
+
     }
     Comment.save(data)
+    user = session['user_id']
     # comment = Comment.save(request.form)
     # return redirect(f"/dashboard/{request.form['user_id']}")
     return redirect(f"/dashboard/{user}")
 
 
 # ! Read all
-@app.route("/dashboard/<int:id>")
-def index3(id):
-    if 'count' not in session:
-        session['count'] = 0
-    session['count'] += 1
-    data = {
-        "id": id
-    }
-    # user = User.get_one(data)
-    user = User.get_one_with_comments(data)
-    comments =  Comment.get_all_with_user()
-    # user_names = User.get_one_name(data)
-    # print("****************")
-    # print(user_names)
-    print(user)
-    return render_template("dashboard.html", user = user, comments=comments, count= session['count'])
+# @app.route("/dashboard/<int:id>")
+# def index3(id):
+#     if 'count' not in session:
+#         session['count'] = 0
+#     session['count'] += 1
+#     data = {
+#         "id": id
+#     }
+#     # user = User.get_one(data)
+#     user = User.get_one_with_comments(data)
+#     comments =  Comment.get_all_with_user()
+#     # user_names = User.get_one_name(data)
+#     # print("****************")
+#     # print(user_names)
+#     print(user)
+#     return render_template("dashboard.html", user = user, comments=comments, count= session['count'])
 
 # @app.route("/dashboard/<int:id>")
 # def dashboard_comment(id):
@@ -151,23 +154,26 @@ def delete_comment(id):
 #     session['count'] += 1
 #     return render_template("index.html", count= session['count'])
 
-@app.route("/up/<int:id>")
-def up(id):
+@app.route("/up", methods = ['post'])
+def up():
     data = {
-        "id":id
+        "like": request.form['like'],
+        "id": session['user_id']
     }
+    print(request.form)
     user = session['user_id']
-    session['count'] += 0
+    Comment.update_like(data)
     return redirect(f"/dashboard/{user}")
 
-@app.route("/down/<int:id>")
-def down(id):
-    data = {
-        "id":id
-    }
-    user = session['user_id']
-    session['count'] -= 2
-    return redirect(f"/dashboard/{user}")
+
+# @app.route("/down/<int:id>")
+# def down(id):
+#     data = {
+#         "id":id
+#     }
+#     user = session['user_id']
+#     session['count'] -= 2
+#     return redirect(f"/dashboard/{user}")
 
 if __name__ == "__main__":
     app.run(debug=True)

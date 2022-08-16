@@ -1,5 +1,5 @@
 
-from ast import Import
+from ast import And, Import
 from flask_app import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
@@ -58,6 +58,7 @@ class User:
             comment_dict = {
                 'id': result['comments.id'],
                 'text': result['text'],
+                'like': result['like'],
                 'user_id': result['user_id'],
                 'created_at': result['comments.created_at'],
                 'updated_at': result['comments.updated_at'],
@@ -85,8 +86,8 @@ class User:
 
     @classmethod
     def update(cls, data):
-        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, password = %(password)s WHERE id = %(id)s ;"
+        return  connectToMySQL(DATABASE).query_db(query, data)
 
     # ! DELETE
     @classmethod
@@ -116,9 +117,12 @@ class User:
         if not EMAIL_REGEX.match(user['email']): 
             is_valid = False
             flash("Invalid email address!", 'email')
-        if user['password'] != user['password_confirm']:
+        if user['password'] != user['password_confirm' ]:
             is_valid = False
             flash("Passwords must match", 'password')
+        if len(user['password']) < 1:
+            is_valid = False
+            flash("Passwords must not be empty", 'password')
         
         return is_valid
 
