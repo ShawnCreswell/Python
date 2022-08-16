@@ -32,6 +32,9 @@ def create():
 # ! Read all
 @app.route("/dashboard/<int:id>")
 def index3(id):
+    if 'count' not in session:
+        session['count'] = 0
+    session['count'] += 1
     data = {
         "id": id
     }
@@ -42,7 +45,7 @@ def index3(id):
     # print("****************")
     # print(user_names)
     print(user)
-    return render_template("dashboard.html", user = user, comments=comments)
+    return render_template("dashboard.html", user = user, comments=comments, count= session['count'])
 
 # @app.route("/dashboard/<int:id>")
 # def dashboard_comment(id):
@@ -133,10 +136,38 @@ def delete_comment(id):
 
 
 
+
 # @app.route("/")
 # def home():
 #     print("hello")
 #     return redirect("/")
+
+
+
+# @app.route('/dashboard/<int:id>')
+# def counter():
+#     if 'count' not in session:
+#         session['count'] = 0
+#     session['count'] += 1
+#     return render_template("index.html", count= session['count'])
+
+@app.route("/up/<int:id>")
+def up(id):
+    data = {
+        "id":id
+    }
+    user = session['user_id']
+    session['count'] += 0
+    return redirect(f"/dashboard/{user}")
+
+@app.route("/down/<int:id>")
+def down(id):
+    data = {
+        "id":id
+    }
+    user = session['user_id']
+    session['count'] -= 2
+    return redirect(f"/dashboard/{user}")
 
 if __name__ == "__main__":
     app.run(debug=True)
