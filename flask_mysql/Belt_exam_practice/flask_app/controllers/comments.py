@@ -156,13 +156,15 @@ def delete_comment(id):
 
 @app.route("/up", methods = ['post'])
 def up():
+    # x = int(request['like'])
     data = {
-        "like": request.form['like'],
-        "id": session['user_id']
+        "like":int(request.form['like']),
+        "id": request.form['id']
     }
     print(request.form)
     user = session['user_id']
     Comment.update_like(data)
+    print(data)
     return redirect(f"/dashboard/{user}")
 
 

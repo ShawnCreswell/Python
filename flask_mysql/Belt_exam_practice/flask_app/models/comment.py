@@ -75,7 +75,10 @@ class Comment:
     @classmethod
     def update_like(cls, data):
         # query = "UPDATE comments SET like = %(like)s + 1  WHERE id = %(id)s ;"
-        query = "UPDATE comments SET comments.like = %(like)s + 1  WHERE id = %(id)s"
+        query = "UPDATE comments SET comments.like = %(like)s + 1  WHERE id = %(id)s ;"
+        # query = "UPDATE comments SET comments.like += 1  WHERE id = %(id)s ;"
+
+        # UPDATE comments SET comments.like = comments.like + 1  WHERE id = 9 ;
         # UPDATE comments SET comments.like = comments.like + 1  WHERE id = 9
         return  connectToMySQL(DATABASE).query_db(query, data)
 
