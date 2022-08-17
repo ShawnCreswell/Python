@@ -1,4 +1,4 @@
-from ..models.recipe import Recipe
+from ..models.magazine import Magazine
 from flask_app import app, render_template, redirect, request, session, flash
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
@@ -42,11 +42,15 @@ def index2(id):
     data = {
         "id": id
     }
+    if 'user_id' not in session:
+        return redirect('/')
     # user = User.get_one(data)
-    user = User.get_one_with_recipes(data)
-    recipes =  Recipe.get_all_with_user()
+    user = User.get_one_with_magazines(data)
+    magazines =  Magazine.get_all_with_user()
     print(user)
-    return render_template("dashboard.html", user = user, recipes=recipes)
+    # return render_template("dashboard.html", magazines=magazines)
+    return render_template("dashboard.html", user = user, magazines=magazines)
+
 
 
 
@@ -64,51 +68,77 @@ def login():
         # if we get False after checking the password
         flash("Invalid Email/Password")
         return redirect('/')
-    # if the passwords matched, we set the user_id into session
     session['user.id'] = user_in_db.id
     session['user_id'] = user_in_db.id
     session['first_name'] = user_in_db.first_name
-    # never render on a post!!!
     return redirect(f"/dashboard/{user_in_db.id}")
 
 # ! UPDATE
 
-@app.route("/create_recipe")
-def create_recipe():
+@app.route("/create_magazine")
+def create_magazines():
     print("hello")
     return render_template("create.html")
-# def index2():
+
+
+
 
 # ! READ ONE
-@app.route("/dashboard/recipe/<int:id>")
-def show_recipe(id):
+@app.route("/dashboard/magazine/<int:id>")
+def show_magazine(id):
+    if 'user_id' not in session:
+        return redirect('/')
     data = {
-        "id": id
+        "id": id,
     }
+    users = session['user_id']
+    user = User.get_one_with_magazines(data)
+    print(user)
+    # magazine = Magazine.get_one_magazine(data)
+    magazines =  Magazine.get_all_with_user()
+    # magazine = Magazine.get_all_with_user()
+    print(magazines)
 
-    user = User.get_one_with_recipes(data)
-    print(data)
+    # user = User.get_one_with_magazines(data)
+    # magazines =  Magazine.get_all_with_user()
+    return render_template("show.html", magazine = magazines, user=user)
 
-    # recipe = Recipe.get_one(data)
-    # return render_template("show.html", user = user, recipe = recipe)
-    return render_template("show.html", user = user)
-    
 
-@app.route("/dashboard/recipe/<int:id>", methods = ['POST'])
-def show_recipe_favorites(id):
+
+@app.route("/edit/user/<int:id>")
+def edit_user(id):
     data = {
-        "id": id
+        "id": session['user_id']
     }
-    print(data)
-    user = session['user_id']
-    # recipe = Recipe.get_one(data)
-    # return render_template("show.html", user = user, recipe = recipe)
-    return redirect (f"dashboard/recipe/{user}", recipe = Recipe.favorites2(data))
+    print("hello")
+    return render_template("edit_user.html", user = User.get_one_with_magazines(data) )
+
+@app.route("/edit/user", methods=['post'])
+def update_user():
+
+    users = session['user_id']
+    if not User.validate_user(request.form):
+        return redirect(f'/edit/user/{users}')
+    hashed_pw = bcrypt.generate_password_hash(request.form['password'])
+    data = {
+        "id": session['user_id'],
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email'], 
+        "password": hashed_pw
+    }
+    User.update(data)
+    session['first_name'] = request.form['first_name']
+    session['last_name'] = request.form['last_name']
+
+    print(request.form)
+    return redirect(f"/dashboard/{users}")
 
 @app.route("/")
 def home():
     print("hello")
     return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

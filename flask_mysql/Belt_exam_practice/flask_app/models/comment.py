@@ -38,14 +38,6 @@ class Comment:
         return comments
 
     # ! READ/RETRIEVE ONE
-    # @classmethod
-    # def get_one(cls, data):
-    #     query = "SELECT * FROM comments WHERE id = %(id)s ;"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-    #     print(results)
-    #     comment = comment(results[0])
-    #     return comment
-
     @classmethod
     def get_one_comment(cls, data):
         query = "SELECT * FROM comments WHERE id = %(id)s ;"
@@ -74,12 +66,7 @@ class Comment:
 
     @classmethod
     def update_like(cls, data):
-        # query = "UPDATE comments SET like = %(like)s + 1  WHERE id = %(id)s ;"
         query = "UPDATE comments SET comments.like = %(like)s + 1  WHERE id = %(id)s ;"
-        # query = "UPDATE comments SET comments.like += 1  WHERE id = %(id)s ;"
-
-        # UPDATE comments SET comments.like = comments.like + 1  WHERE id = 9 ;
-        # UPDATE comments SET comments.like = comments.like + 1  WHERE id = 9
         return  connectToMySQL(DATABASE).query_db(query, data)
 
     @staticmethod
@@ -90,11 +77,3 @@ class Comment:
             flash("Thought must be at least 5 characters.", 'text')
         return is_valid
     
-
-
-
-
-    # @classmethod
-    # def update(cls, data):
-    #     query = "UPDATE comments SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)

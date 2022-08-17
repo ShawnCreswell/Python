@@ -49,34 +49,35 @@
     <div class="container bg-light mt-4 p-4">
         <div class="d-flex justify-content-between"">
             <h1>Add a comment</h1>
-            <a href="/dashboard/{{session.user_id}}">back to comments</a>
+            <a href="/dashboard/{{comment.user_id}}">back to comments</a>
             <a href="/">Logout</a>
         </div>
-        <form action="/create_comment" , method="post">
+        <form action="/update/comment" , method="post">
             <div class="d-flex">
-                    <div class="col">  
-                            <input type="hidden" name="{{user.id}}" value="{{user_id}}">
-
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">text </label>
-                                <input type="name" name="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <div class="col">
+                        {{session}}
+                            <div class="mb-3">  
+                                <input type="hidden" name="user_id" value="{{comment.user_id}}"> 
+                                <input type="hidden" name="id" value="{{comment.id}}">  
+                                <label for="exampleFormControlInput1" class="form-label"> Name </label>
+                                <input type="name" name="name" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{comment.name}}">
                             </div>
-                            <input class="btn btn-primary" type="submit" name="key" value="Submit">
-                            <!-- <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <input type="name" name="description" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <input type="name" name="description" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{comment.description}}">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Instructions</label>
-                                <input type="name" name="instruction" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <input type="name" name="instruction" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{comment.instruction}}">
                             </div>
-                            <a href="/">Home</a>
+                            <input class="btn btn-primary" type="submit" name="" value="Submit">
                     </div>
-                    <div class="col"> 
+                    <div class="col">
+                        
                             <div class="mb-3 p-5">
                                 <label for="exampleFormControlInput1" class="form-label">Date Cooked/Made: </label>
                                 <input type="name" name="date_made" class="form-control  border border-3 border-dark" id="exampleFormControlInput1"
-                                placeholder="">
+                                placeholder="" value="{{comment.date_made}}">
                             </div>
                     </div>
                 </div>
@@ -87,10 +88,10 @@
                         <input type="radio" name="under" id="under" value="1">
                         <label for="under_30">no</label>
                         <input type="radio" name="under" id="under" value="0">
-                        </div>
                     </div>
-                </div> -->
-            </form>
+                </div>
+            </div>
+        </form>
         </div>
     </div>
     <!-- Container end -->

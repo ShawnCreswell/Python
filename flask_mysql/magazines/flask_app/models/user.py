@@ -1,14 +1,14 @@
 
-from ast import Import
+from ast import And, Import
 from flask_app import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
 
-from flask_app.models.recipe import Recipe
+from flask_app.models.magazine import Magazine
 from pprint import pprint
 
 
-DATABASE = 'recipes'
+DATABASE = 'user_and_magazines'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class User:
     def __init__( self , data ):
@@ -17,7 +17,7 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.recipes = []
+        self.magazines = []
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
@@ -40,40 +40,26 @@ class User:
         user = User(result[0])
         return user
 
-    # @classmethod
-    # def get_one_name(cls,data):
-    #     query = "SELECT first_name FROM users LEFT JOIN recipes ON users.id = recipes.user_id WHERE recipes.user_id= 7;"
-    #     result = connectToMySQL(DATABASE).query_db(query, data)
-    #     print(result)
-    #     user_names = User(result[0])
-    #     return user_names
 
     @classmethod
-    def get_one_with_recipes(cls, data):
-        query = "SELECT * FROM users LEFT JOIN recipes ON users.id = recipes.user_id WHERE users.id = %(id)s ;"
+    def get_one_with_magazines(cls, data):
+        query = "SELECT * FROM users LEFT JOIN magazines ON users.id = magazines.user_id WHERE users.id = %(id)s ;"
         results = connectToMySQL(DATABASE).query_db(query, data)
         pprint(results)
         user = User(results[0])
         for result in results:
-            recipe_dict = {
-                'id': result['recipes.id'],
-                'name': result['name'],
-                'description': result['description'],
-                'instruction': result['instruction'],
-                'under': result['under'],
-                'date_made': result['date_made'],
+            magazine_dict = {
+                'id': result['magazines.id'],
+                'title': result['title'],
+                'info': result['info'],
                 'user_id': result['user_id'],
-                'created_at': result['recipes.created_at'],
-                'updated_at': result['recipes.updated_at'],
+                'created_at': result['magazines.created_at'],
+                'updated_at': result['magazines.updated_at'],
             }
-            user.recipes.append(Recipe(recipe_dict))
+            user.magazines.append(Magazine(magazine_dict))
         print(user)
         return user
 
-    # @classmethod
-    # def save(cls, data ):
-    #     query = "INSERT INTO users (name, created_at, updated_at ) VALUES ( %(name)s, NOW() , NOW() );"
-    #     return connectToMySQL(DATABASE).query_db(query, data )
 
     # ! CREATE
     @classmethod
@@ -81,29 +67,17 @@ class User:
         query = "INSERT INTO users ( first_name , last_name , email, password, created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s , NOW() , NOW() );"
         return connectToMySQL(DATABASE).query_db( query, data )
 
-    # ! UPDATE
-    @classmethod
-    def update(cls, data):
-        query = "UPDATE users SET name = %(name)s WHERE id = %(id)s ;"
-        return connectToMySQL(DATABASE).query_db(query, data)
 
     @classmethod
     def update(cls, data):
-        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s WHERE id = %(id)s ;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, password = %(password)s WHERE id = %(id)s ;"
+        return  connectToMySQL(DATABASE).query_db(query, data)
 
     # ! DELETE
     @classmethod
     def destroy(cls, data):
         query = "DELETE FROM users WHERE id = %(id)s;"
         return connectToMySQL(DATABASE).query_db(query, data)
-
-
-    @staticmethod
-    def validate_user(user):
-        is_valid = True
-        if len(user['name']) < 3:
-            is_valid = False
 
 
     @staticmethod
@@ -118,9 +92,12 @@ class User:
         if not EMAIL_REGEX.match(user['email']): 
             is_valid = False
             flash("Invalid email address!", 'email')
-        if user['password'] != user['password_confirm']:
+        if user['password'] != user['password_confirm' ]:
             is_valid = False
             flash("Passwords must match", 'password')
+        if len(user['password']) < 1:
+            is_valid = False
+            flash("Passwords must not be empty", 'password')
         
         return is_valid
 
@@ -142,15 +119,3 @@ class User:
         if len(result) < 1:
             return False
         return cls(result[0])
-
-    # @classmethod
-    # def destroy(cls, data):
-    #     query = "DELETE FROM recipes WHERE id = %(id)s ;"
-    #     results = connectToMySQL(DATABASE).query_db(query, data)
-
-    # @classmethod
-    # def favorites(cls, data):
-    #     query = "SELECT * FROM users LEFT JOIN favorites ON users.id = favorites.user_id LEFT JOIN recipes ON favorites.recipe_id = recipes.id WHERE users.id = %(id)s ;"
-    #     # query = "SELECT * FROM users LEFT JOIN recipes ON users.id = recipes.user_id WHERE users.id = %(id)s ;"
-
-    #     results = connectToMySQL(DATABASE).query_db(query, data)

@@ -17,6 +17,7 @@ from flask_app.models.user import User
 @app.route("/create_a_comment", methods=['post'])
 def create():
     print(request.form)
+    user = session['user_id']
     if not Comment.validate_thought(request.form):
         return redirect(f"/dashboard/{user}")
     data = {
@@ -26,9 +27,6 @@ def create():
 
     }
     Comment.save(data)
-    user = session['user_id']
-    # comment = Comment.save(request.form)
-    # return redirect(f"/dashboard/{request.form['user_id']}")
     return redirect(f"/dashboard/{user}")
 
 
@@ -50,11 +48,6 @@ def create():
 #     print(user)
 #     return render_template("dashboard.html", user = user, comments=comments, count= session['count'])
 
-# @app.route("/dashboard/<int:id>")
-# def dashboard_comment(id):
-#     comment = comment.get_all()
-#     print(comment)
-#     return render_template("dashboard.html", comment = comment)
 
 
 

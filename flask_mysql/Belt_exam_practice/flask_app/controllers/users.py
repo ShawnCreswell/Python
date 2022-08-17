@@ -120,6 +120,9 @@ def update_user():
         "password": hashed_pw
     }
     User.update(data)
+    session['first_name'] = request.form['first_name']
+    session['last_name'] = request.form['last_name']
+
     print(request.form)
     return redirect(f"/dashboard/{users}")
 

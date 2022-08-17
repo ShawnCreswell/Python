@@ -17,3 +17,20 @@ edit
 delete
 
 {% endif %}
+
+
+SELECT * FROM users LEFT JOIN favorites ON users.id = favorites.user_id LEFT JOIN recipes ON favorites.recipe_id = recipes.id
+ WHERE users.id = 11 ;
+\
+
+SELECT * FROM users LEFT JOIN favorites ON users.id = favorites.user2_id LEFT JOIN recipes ON favorites.recipe_id = recipes.id
+ WHERE recipe_id = 10 ;
+
+ SELECT * FROM recipes LEFT JOIN favorites ON recipes.id = favorites.user2_id LEFT JOIN users on favorites.user_id = users.id
+ Where user_id = 10
+
+
+ SELECT * FROM recipes LEFT JOIN favorites ON recipes.id = favorites.recipe_id LEFT JOIN users on favorites.user2_id = users.id
+ Where user_id = 12
+
+

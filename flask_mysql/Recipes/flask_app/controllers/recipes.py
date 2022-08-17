@@ -61,8 +61,29 @@ def index3(id):
 #     recipe = Recipe.get_one(data)
 #     return render_template('show.html', recipe = recipe)
 
+# ! READ ONE
+# @app.route("/dashboard/recipe/<int:id>")
+# def favorites(id):
     
-# # ! Show
+
+#     data = {
+#         "recipe_id": recipe_id
+#     }
+
+#     recipe = Recipe.favorites(data)
+#     user = session['user_id']
+#     # recipe = Recipe.get_one(data)
+
+#     # return render_template("show.html", user = user, recipe = recipe)
+#     return redirect(f"/dashboard/{user}")
+
+    
+# # ! Show Favorites
+
+
+
+
+
 # @app.route("/show/<int:id>")
 # def show1(id):
 #     data = {
@@ -130,9 +151,6 @@ def delete_recipe(id):
     Recipe.destroy({'id': id})
     user = session['user_id']
     return redirect(f"/dashboard/{user}")
-
-
-
 
 
 # @app.route("/")

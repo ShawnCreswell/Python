@@ -76,6 +76,43 @@ class Recipe:
         return connectToMySQL(DATABASE).query_db(query, data)
 
     
+    @classmethod
+    def favorites2(cls, data):
+        # query = "SELECT first_name FROM recipes LEFT JOIN favorites ON recipes.id = favorites.recipe_id LEFT JOIN users ON favorites.user2_id = users.id WHERE recipe_id = %(id)s ;"
+        query = "SELECT first_name FROM recipes LEFT JOIN favorites ON recipes.id = favorites.recipe_id LEFT JOIN users ON favorites.user2_id = users.id WHERE recipe_id = %(id)s ;"
+        return connectToMySQL(DATABASE).query_db(query, data)    
+        print(results)
+
+    # @classmethod
+    # def favorites(cls):
+    #     query = "SELECT * FROM recipes LEFT JOIN favorites ON recipes.id = favorites.recipe_id LEFT JOIN users ON favorites.user2_id = users.id WHERE recipe_id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query)
+    #     print(results)
+    #     recipes =[]
+    #     for recipe in results:
+    #         recipes.append(cls(recipe))
+    #     return recipes
+
+
+
+    # @classmethod
+    # def get_one_with_favorites(cls, data):
+    #     query = "SELECT * FROM recipes LEFT JOIN favorites ON recipes.id = favorites.recipe_id LEFT JOIN users ON favorites.user2_id = users.id WHERE recipe_id = %(id)s ;"
+    #     results = connectToMySQL(DATABASE).query_db(query, data)
+    #     recipe = Recipe(results[0])
+    #     for result in results:
+    #         user_dict = {
+    #             'id': result['users.id'],
+    #             'first_name': result['first_name'],
+    #             'last_name': result['last_name'],
+    #             'email': result['email'],
+    #             'password': result['password'],
+    #             'created_at': result['recipes.created_at'],
+    #             'updated_at': result['recipes.updated_at'],
+    #         }
+    #         recipe.users.append(User(user_dict))
+    #     print(recipe)
+    #     return recipe
     # @classmethod
     # def update(cls, data):
     #     query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instruction = %(instruction)s, date_made = %(date_made)s, user_id = %(user_id)s WHERE id = %(id)s ;"
